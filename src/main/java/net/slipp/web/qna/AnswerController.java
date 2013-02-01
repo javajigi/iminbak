@@ -62,11 +62,4 @@ public class AnswerController {
 		qnaService.updateAnswer(loginUser, answer);
 		return String.format("redirect:/questions/%d#answer-%d", questionId, answerId);
 	}
-		
-	@RequestMapping(value = "/{answerId}/like", method = RequestMethod.POST)
-	public String like(@LoginUser SocialUser loginUser, @PathVariable Long questionId, @PathVariable Long answerId)
-			throws Exception {
-		qnaService.likeAnswer(loginUser, answerId);
-		return String.format("redirect:/questions/%d#answer-%d", questionId, answerId);
-	}
 }

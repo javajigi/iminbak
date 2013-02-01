@@ -12,7 +12,6 @@ import net.slipp.domain.tag.Tag;
 import net.slipp.domain.user.SocialUser;
 import net.slipp.repository.qna.AnswerRepository;
 import net.slipp.repository.qna.QuestionRepository;
-import net.slipp.service.rank.ScoreLikeService;
 import net.slipp.service.tag.TagService;
 
 import org.springframework.data.domain.Page;
@@ -33,12 +32,6 @@ public class QnaService {
 
 	@Resource(name = "tagService")
 	private TagService tagService;
-
-	@Resource(name = "notificationService")
-	private NotificationService notificationService;
-
-	@Resource(name = "scoreLikeService")
-	private ScoreLikeService scoreLikeService;
 
 	public Question createQuestion(SocialUser loginUser, QuestionDto questionDto) {
 		Assert.notNull(loginUser, "loginUser should be not null!");
@@ -98,7 +91,6 @@ public class QnaService {
 		answer.writedBy(loginUser);
 		answer.answerTo(question);
 		answerRepository.save(answer);
-		notificationService.notifyToFacebook(loginUser, question, question.findNotificationUser(loginUser));
 	}
 
 	public void updateAnswer(SocialUser loginUser, Answer answerDto) {
@@ -121,14 +113,5 @@ public class QnaService {
 		answerRepository.delete(answer);
 		Question question = questionRepository.findOne(questionId);
 		question.deAnswered();
-	}
-
-	public void likeAnswer(SocialUser loginUser, Long answerId) {
-		if (!scoreLikeService.alreadyLikedAnswer(answerId, loginUser.getId())) {
-			scoreLikeService.saveLikeAnswer(answerId, loginUser.getId());
-			Answer answer = answerRepository.findOne(answerId);
-			answer.upRank();
-			answerRepository.save(answer);
-		}
 	}
 }

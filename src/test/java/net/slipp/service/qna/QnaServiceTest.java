@@ -1,8 +1,7 @@
 package net.slipp.service.qna;
 
 import static net.slipp.domain.tag.TagTest.*;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 import java.util.Set;
 
@@ -13,7 +12,6 @@ import net.slipp.domain.tag.Tag;
 import net.slipp.domain.user.SocialUser;
 import net.slipp.repository.qna.AnswerRepository;
 import net.slipp.repository.qna.QuestionRepository;
-import net.slipp.service.rank.ScoreLikeService;
 import net.slipp.service.tag.TagService;
 
 import org.junit.Test;
@@ -35,8 +33,6 @@ public class QnaServiceTest {
 	
 	@Mock
 	private TagService tagService;
-	@Mock
-	private ScoreLikeService scoreLikeService;
 	
 	@InjectMocks
 	private QnaService dut = new QnaService();
@@ -84,15 +80,6 @@ public class QnaServiceTest {
 		
 		// when
 		dut.deleteAnswer(loginUser, questionId, answer.getAnswerId());
-	}
-	
-	@Test
-	public void likeAnswer_() throws Exception {
-		SocialUser loginUser = new SocialUser(10);
-		Answer answer = new Answer(2L);
-		answer.writedBy(loginUser);
-		when(answerRepository.findOne(answer.getAnswerId())).thenReturn(answer);
-		dut.likeAnswer(loginUser, answer.getAnswerId());
 	}
 }
 

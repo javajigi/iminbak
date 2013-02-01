@@ -6,9 +6,7 @@ import java.util.StringTokenizer;
 
 import javax.inject.Inject;
 
-import net.slipp.domain.tag.NewTag;
 import net.slipp.domain.tag.Tag;
-import net.slipp.repository.tag.NewTagRepository;
 import net.slipp.repository.tag.TagRepository;
 
 import org.springframework.data.domain.Page;
@@ -23,15 +21,13 @@ import com.google.common.collect.Sets;
 @Transactional
 public class TagService {
 	private TagRepository tagRepository;
-	private NewTagRepository newTagRepository;
 	
 	public TagService() {
 	}
 	
 	@Inject
-	public TagService(TagRepository tagRepository, NewTagRepository newTagRepository) {
+	public TagService(TagRepository tagRepository) {
 		this.tagRepository = tagRepository;
-		this.newTagRepository = newTagRepository;
 	}
 	
     public Set<Tag> processTags(String plainTags) {
@@ -85,10 +81,6 @@ public class TagService {
 	
 	public Iterable<Tag> findPooledTags() {
 		return tagRepository.findPooledParents();
-	}
-	
-	public Page<NewTag> findNewTags(Pageable page) {
-		return newTagRepository.findAll(page);
 	}
 	
 	public Tag saveTag(Tag tag) {

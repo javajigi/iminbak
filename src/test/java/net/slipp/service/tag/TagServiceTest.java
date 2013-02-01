@@ -8,7 +8,6 @@ import static org.mockito.Mockito.*;
 import java.util.Set;
 
 import net.slipp.domain.tag.Tag;
-import net.slipp.repository.tag.NewTagRepository;
 import net.slipp.repository.tag.TagRepository;
 
 import org.junit.Before;
@@ -24,12 +23,9 @@ public class TagServiceTest {
 	@Mock
 	private TagRepository tagRepository;
 	
-	@Mock
-	private NewTagRepository newTagRepository;
-	
 	@Before
 	public void setup() {
-		dut = new TagService(tagRepository, newTagRepository);
+		dut = new TagService(tagRepository);
 	}
 	
 	@Test
