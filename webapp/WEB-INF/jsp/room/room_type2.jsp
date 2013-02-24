@@ -22,7 +22,7 @@
     <div id="portfolio_tem">
         <div class="container">
             <%@ include file="/WEB-INF/jsp/include/room_submenu.jspf" %>
-            
+        
             <div class="section_header">
                 <h3><a href="/rooms/${type}">${type.name}</a></h3>
             </div>
@@ -58,10 +58,10 @@
 				  </thead>
 				  <tbody>
 				    <tr>
-				      <td>9평</td>
+				      <td>15평</td>
 				      <td>${type.floor}층</td>
-				      <td>2명</td>
-				      <td>5명</td>
+				      <td>3명</td>
+				      <td>6명</td>
 				    </tr>
 				    <tr>
 				      <td colspan="4">TV, 냉장고, 에어콘, 가스레인지, 밥솥, 드라이기</td>
@@ -81,13 +81,13 @@
 				  <tbody>
 				    <tr>
 				      <td>비수기</td>
-				      <td>70,000원</td>
-				      <td>70,000원</td>
+				      <td>90,000원</td>
+				      <td>90,000원</td>
 				    </tr>
 				    <tr>
 				      <td>성수기</td>
-				      <td>90,000원</td>
-				      <td>90,000원</td>
+				      <td>130,000원</td>
+				      <td>130,000원</td>
 				    </tr>
 				  </tbody>
                 </table>
@@ -95,7 +95,7 @@
                 <a href="javascript:RealReservation()" class="btn btn-primary btn-large btn-question pull-right">실시간 예약하기</a>
             </div>
         </div>
-    </div>
+    </div> 
     
     <!-- Scripts -->
     <script src="http://code.jquery.com/jquery-latest.js"></script>

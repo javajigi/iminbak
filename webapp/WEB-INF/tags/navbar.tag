@@ -28,13 +28,14 @@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
                             <b class="caret"></b>
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a href="/rooms/room1">그린티</a></li>
-                            <li><a href="/rooms/room2">라벤더</a></li>
-                            <li><a href="/rooms/room3">로즈마리</a></li>
-                            <li><a href="/rooms/room4">스위트그린</a></li>
-                            <li><a href="/rooms/room5">자스민</a></li>
+                            <li><a href="/rooms/greentea">그린티</a></li>
+                            <li><a href="/rooms/lavender">라벤더</a></li>
+                            <li><a href="/rooms/rosemary">로즈마리</a></li>
+                            <li><a href="/rooms/sweetgreen">스위트그린</a></li>
+                            <li><a href="/rooms/jasmine">자스민</a></li>
                         </ul>
                     </li>
+                    <li><a href="/rooms/out">야외</a></li>
                     <li><a href="/reservations">예약정보</a></li>
                     <li><a href="blog.html">찾아오시는길</a></li>
                     <li><a href="pricing.html">문의게시판</a></li>

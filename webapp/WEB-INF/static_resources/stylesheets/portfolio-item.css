@@ -1,6 +1,37 @@
 #portfolio_tem{
 	margin-top: 30px;
 }
+
+#portfolio_tem #filters {
+	list-style-type: none;
+	height: 30px;
+	margin-bottom: 40px;
+	text-align: center;
+	margin-top: -20px;
+}
+#portfolio_tem #filters li {
+	display: inline-block;
+	font-size: 20px;
+	margin: 0px 6px;
+}
+#portfolio_tem #filters li.separator {
+	color: #c0c0c0;
+	font-weight: lighter;
+}
+#portfolio_tem #filters li a {
+	color: #3f3f3f;
+	font-style: italic;
+	-webkit-transition: color .2s;
+	-moz-transition: color .2s;
+	-ms-transition: color .2s;
+	transition: color .2s;
+}
+#portfolio_tem #filters li a:hover,
+#portfolio_tem #filters li a.active {
+	color: #1189d9;
+}
+
+
 #portfolio_tem .left_box{
 	margin-left: 0;
 }

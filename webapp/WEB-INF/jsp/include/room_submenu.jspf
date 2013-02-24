@@ -1,0 +1,20 @@
+<%@ page pageEncoding="UTF-8" %>
+            <div class="row">
+                <div class="span12">
+                    <div id="filters_container">
+                        <ul id="filters">
+                            <li><a href="/rooms/greentea"<c:if test="${type.type == 1}"> class="active"</c:if>>그린티</a></li>
+                            <li class="separator">/</li>
+                            <li><a href="/rooms/lavender"<c:if test="${type.type == 2}"> class="active"</c:if>>라벤더</a></li>
+                            <li class="separator">/</li>
+                            <li><a href="/rooms/rosemary"<c:if test="${type.type == 3}"> class="active"</c:if>>로즈마리</a></li>
+                            <li class="separator">/</li>
+                            <li><a href="/rooms/sweetgreen"<c:if test="${type.type == 4}"> class="active"</c:if>>스위트그린</a></li>
+                            <li class="separator">/</li>
+                            <li><a href="/rooms/jasmine"<c:if test="${type.type == 5}"> class="active"</c:if>>자스민</a></li>
+                            <li class="separator">/</li>
+                            <li><a href="/rooms/out"<c:if test="${type.type == 0}"> class="active"</c:if>>야외</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
