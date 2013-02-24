@@ -4,8 +4,8 @@
 	<excludes>
 		<pattern>/popup/*</pattern>
 		<pattern>/attachments*</pattern>
-		<pattern>/rss*</pattern>
 		<pattern>/wikis/preview*</pattern>
+		<pattern>/rooms*</pattern>
 	</excludes>
 
 	<decorator name="default" page="default.jsp">

@@ -1,12 +1,8 @@
 package net.slipp.web;
 
-import java.util.Date;
-import java.util.List;
-
 import javax.annotation.Resource;
 
 import net.slipp.domain.qna.Question_;
-import net.slipp.domain.wiki.WikiPage;
 import net.slipp.service.qna.QnaService;
 import net.slipp.service.wiki.WikiService;
 
@@ -51,24 +47,6 @@ public class HomeController {
 		return new PageRequest(DEFAULT_PAGE_NO, DEFAULT_PAGE_SIZE, sort);
 	}
 	
-	@RequestMapping("/rss")
-	public String rss(Model model) {
-		List<WikiPage> pages = wikiService.findWikiPages();
-		model.addAttribute("pages", pages);
-		model.addAttribute("now", new Date());
-		return "rss";
-	}
-	
-	@RequestMapping("/code")
-	public String code() {
-		return "code";
-	}
-	
-	@RequestMapping("/about")
-	public String about() {
-		return "about";
-	}
-
     @RequestMapping("/login")
     public String login() {
         return "login";
