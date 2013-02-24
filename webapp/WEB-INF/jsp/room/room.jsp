@@ -97,6 +97,8 @@
         </div>
     </div>
     
+    <%@include file="/WEB-INF/jsp/include/footer.jspf"%>
+    
     <!-- Scripts -->
     <script src="http://code.jquery.com/jquery-latest.js"></script>
     <script src="${url:resource('/javascripts/bootstrap.min.js')}"></script>

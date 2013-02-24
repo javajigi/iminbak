@@ -184,5 +184,6 @@
         </div>
     </div>
 
+	<%@include file="/WEB-INF/jsp/include/footer.jspf"%>
 </body>
 </html>
