@@ -1,18 +1,14 @@
 package net.slipp.service.qna;
 
-import java.util.Set;
-
 import javax.annotation.Resource;
 
 import net.slipp.domain.qna.Answer;
 import net.slipp.domain.qna.QnaSpecifications;
 import net.slipp.domain.qna.Question;
 import net.slipp.domain.qna.QuestionDto;
-import net.slipp.domain.tag.Tag;
 import net.slipp.domain.user.SocialUser;
 import net.slipp.repository.qna.AnswerRepository;
 import net.slipp.repository.qna.QuestionRepository;
-import net.slipp.service.tag.TagService;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -30,16 +26,11 @@ public class QnaService {
 	@Resource(name = "answerRepository")
 	private AnswerRepository answerRepository;
 
-	@Resource(name = "tagService")
-	private TagService tagService;
-
 	public Question createQuestion(SocialUser loginUser, QuestionDto questionDto) {
 		Assert.notNull(loginUser, "loginUser should be not null!");
 		Assert.notNull(questionDto, "question should be not null!");
 
-		Set<Tag> tags = tagService.processTags(questionDto.getPlainTags());
-
-		Question newQuestion = new Question(loginUser, questionDto.getTitle(), questionDto.getContents(), tags);
+		Question newQuestion = new Question(loginUser, questionDto.getTitle(), questionDto.getContents());
 		Question savedQuestion = questionRepository.save(newQuestion);
 		return savedQuestion;
 	}
@@ -50,8 +41,7 @@ public class QnaService {
 
 		Question question = questionRepository.findOne(questionDto.getQuestionId());
 
-		Set<Tag> tags = tagService.processTags(questionDto.getPlainTags());
-		question.update(loginUser, questionDto.getTitle(), questionDto.getContents(), tags);
+		question.update(loginUser, questionDto.getTitle(), questionDto.getContents());
 		return question;
 	}
 
@@ -68,10 +58,6 @@ public class QnaService {
 		question.show();
 
 		return question;
-	}
-
-	public Page<Question> findsByTag(String name, Pageable pageable) {
-		return questionRepository.findsByTag(name, pageable);
 	}
 
 	public Page<Question> findsQuestion(Pageable pageable) {

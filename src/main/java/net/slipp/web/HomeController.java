@@ -8,7 +8,6 @@ import javax.annotation.Resource;
 import net.slipp.domain.qna.Question_;
 import net.slipp.domain.wiki.WikiPage;
 import net.slipp.service.qna.QnaService;
-import net.slipp.service.tag.TagService;
 import net.slipp.service.wiki.WikiService;
 
 import org.springframework.beans.factory.annotation.Value;
@@ -34,16 +33,12 @@ public class HomeController {
 	@Resource(name = "qnaService")
 	private QnaService qnaService;
 	
-	@Resource(name = "tagService")
-	private TagService tagService;
-	
 	@RequestMapping("/")
 	public String home(Model model) {
 		if (isProductionMode()) {
 			model.addAttribute("pages", wikiService.findWikiPages());			
 		}
 		model.addAttribute("questions", qnaService.findsQuestion(createPageable()));
-		model.addAttribute("tags", tagService.findPooledTags());		
 		return "index";
 	}
 

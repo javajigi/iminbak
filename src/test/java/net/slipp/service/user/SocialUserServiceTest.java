@@ -1,7 +1,6 @@
 package net.slipp.service.user;
 
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 import net.slipp.domain.user.ExistedUserException;
 
 import org.junit.Ignore;

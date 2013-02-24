@@ -1,7 +1,7 @@
 package net.slipp.support.wiki;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.CoreMatchers.*;
+import static org.junit.Assert.*;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

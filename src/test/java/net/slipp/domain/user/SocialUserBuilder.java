@@ -1,6 +1,5 @@
 package net.slipp.domain.user;
 
-import net.slipp.domain.user.SocialUser;
 
 
 

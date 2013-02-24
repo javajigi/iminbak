@@ -1,7 +1,7 @@
 package net.slipp.support.web.tags;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
+import static org.hamcrest.CoreMatchers.*;
+import static org.junit.Assert.*;
 import net.slipp.domain.user.SocialUser;
 
 import org.junit.Test;

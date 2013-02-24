@@ -1,7 +1,6 @@
 package net.slipp.domain.qna;
 
 import static net.slipp.domain.qna.AnswerBuilder.*;
-
 import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.*;
 

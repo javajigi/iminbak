@@ -5,7 +5,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title><decorator:title default="SLiPP"/></title>
+<title>,&middot;&acute;″```&deg;&sup3;о♡::정이담긴집에 오신 것을 환영합니다::♡о&sup3;&deg;```″&acute;&middot;, </title>
 <link rel="shortcut icon" type="image/x-icon" href="${url:resource('/images/favicon.ico')}">
 <link href="${url:resource('/stylesheets/bootstrap.css')}" rel="stylesheet">
 <style>
@@ -33,14 +33,13 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </a>
-        <a class="brand" href="/"><abbr title="Sustainable Life, Programming, Programmer">SLiPP</abbr><span class="sub"> - 지속가능한 삶, 프로그래밍, 프로그래머</span></a>
+        <a class="brand" href="/"><abbr title="정이 담긴 집">정이 담긴 집</abbr></a>
         <div class="nav-collapse">
           <ul class="nav nav-pills pull-right">
-            <li><a href="/questions">QnA</a></li>
-            <li><a href="/wiki">Wiki</a></li>
-            <li><a href="https://github.com/javajigi/slipp/issues" target="_blank">Ideas&amp;Bugs</a></li>
-            <li><a href="/code">Code</a></li>
-            <li><a href="/about">about</a></li>
+            <li><a href="/rooms">객실안내</a></li>
+            <li><a href="/questions">문의게시판</a></li>
+            <li><a href="/reservations">예약안내</a></li>
+            <li><a href="/travels">찾아오시는길</a></li>
             <sec:authorize access="!hasRole('ROLE_USER')">
             <li class="active loginBtn"><a href="/login">로그인</a></li>
             </sec:authorize>
