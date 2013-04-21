@@ -52,12 +52,13 @@
                         Contact
                     </h3>
                     전화번호 : 017-515-1571<br/>
-                    계좌번호 : 농협&nbsp;&nbsp;123-3455-789 &nbsp;&nbsp;박재성
+                    <!-- 계좌번호 : 농협&nbsp;&nbsp;123-3455-789 &nbsp;&nbsp;박재성 -->
                 </div>
                 <div class="span6 recent_posts">
                     <h3 class="footer_header">
                         최근 블로그 글
                     </h3>
+                   	<!-- 
                     <div class="post">
                         <a href="blogpost.html">
                             <img src="${url:resource('/images/recent_post1.png')}" class="img-circle" />
@@ -80,6 +81,7 @@
                             Randomised words which don't look embarrasing hidden.
                         </a>
                     </div>
+                    -->
                 </div>
             </div>
         </div>

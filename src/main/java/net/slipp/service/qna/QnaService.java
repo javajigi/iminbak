@@ -54,6 +54,7 @@ public class QnaService {
 	}
 
 	public Question showQuestion(Long id) {
+		
 		Question question = questionRepository.findOne(id);
 		question.show();
 

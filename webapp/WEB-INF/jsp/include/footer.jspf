@@ -11,12 +11,12 @@
                 <div class="span5 touch">
                     <ul>
                         <li><strong>전화번호</strong> 017-515-1571</li>
-                        <li><strong>이메일 주소</strong><a href="#"> bootstrap@twitter.com</a></li>
                     </ul>
                 </div>
             </div>
             <div class="row credits">
                 <div class="span12">
+                	<!-- 
                     <div class="row social">
                         <div class="span12">
                             <a href="https://www.facebook.com/iminbak" class="facebook">
@@ -33,6 +33,7 @@
                             </a>
                         </div>
                     </div>
+                     -->
                     <div class="row copyright">
                         <div class="span12">
                             © 2013 Clean Canvas. All rights reserved. Theme by Detail Canvas.

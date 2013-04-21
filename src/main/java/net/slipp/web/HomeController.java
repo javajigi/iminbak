@@ -4,7 +4,6 @@ import javax.annotation.Resource;
 
 import net.slipp.domain.qna.Question_;
 import net.slipp.service.qna.QnaService;
-import net.slipp.service.wiki.WikiService;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.PageRequest;
@@ -23,25 +22,15 @@ public class HomeController {
 	@Value("#{applicationProperties['environment']}")
 	private String environment;
 	
-	@Resource(name="wikiService")
-	private WikiService wikiService;
-	
 	@Resource(name = "qnaService")
 	private QnaService qnaService;
 	
 	@RequestMapping("/")
 	public String home(Model model) {
-		if (isProductionMode()) {
-			model.addAttribute("pages", wikiService.findWikiPages());			
-		}
 		model.addAttribute("questions", qnaService.findsQuestion(createPageable()));
 		return "index";
 	}
 
-	private boolean isProductionMode() {
-		return "PRODUCTION".equals(environment);
-	}
-	
 	private Pageable createPageable() {
 		Sort sort = new Sort(Direction.DESC, Question_.createdDate.getName());
 		return new PageRequest(DEFAULT_PAGE_NO, DEFAULT_PAGE_SIZE, sort);

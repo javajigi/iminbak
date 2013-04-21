@@ -36,25 +36,11 @@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
                         </ul>
                     </li>
                     <li><a href="/rooms/out">야외</a></li>
+                    <!-- 
                     <li><a href="/reservations">예약정보</a></li>
                     <li><a href="blog.html">찾아오시는길</a></li>
                     <li><a href="pricing.html">문의게시판</a></li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            PAGES
-                            <b class="caret"></b>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a href="features.html">Features</a></li>
-                            <li><a href="services.html">Services</a></li>
-                            <li><a href="portfolio.html">Portfolio</a></li>
-                            <li><a href="portfolio-item.html">Portfolio Item</a></li>
-                            <li><a href="coming-soon.html">Coming Soon</a></li>
-                            <li><a href="sign-in.html">Sign in</a></li>
-                            <li><a href="sign-up.html">Sign up</a></li>
-                            <li><a href="backgrounds.html">Backgrounds</a></li>
-                        </ul>
-                    </li>
+                     -->
                 </ul>
             </div>
         </div>
