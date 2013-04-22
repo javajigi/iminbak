@@ -37,8 +37,8 @@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
                     </li>
                     <li><a href="/rooms/out">야외</a></li>
                     <li><a href="/reservations">예약정보</a></li>
+                    <li><a href="/maps">찾아오시는길</a></li>
                     <!-- 
-                    <li><a href="blog.html">찾아오시는길</a></li>
                     <li><a href="pricing.html">문의게시판</a></li>
                      -->
                 </ul>

@@ -45,9 +45,6 @@
             </div>
 
             <div class="span5 right_box">
-                <h2>객실정보</h2>
-
-                
                 <a href="javascript:RealReservation()" class="btn btn-primary btn-large btn-question pull-right">실시간 예약하기</a>
             </div>
         </div>

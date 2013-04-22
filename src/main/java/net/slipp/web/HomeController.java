@@ -47,7 +47,12 @@ public class HomeController {
     }
     
     @RequestMapping("/reservations")
-    public String reservations(Model model) {
+    public String reservations() {
         return "reservations";
-    }    
+    }
+    
+    @RequestMapping("/maps")
+    public String maps() {
+        return "maps";
+    } 
 }
