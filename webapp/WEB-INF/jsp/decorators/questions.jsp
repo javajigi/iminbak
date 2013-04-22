@@ -14,32 +14,27 @@
     <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,900,300italic,400italic,700italic,900italic' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="${url:resource('/stylesheets/lib/animate.css')}" media="screen, projection">    
 
-	<link rel="stylesheet" href="${url:resource('/stylesheets/index.css')}" type="text/css" media="screen" />
+	<link rel="stylesheet" href="${url:resource('/stylesheets/questions.css')}" type="text/css" media="screen" />
 	
     <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.23/jquery-ui.min.js"></script>
+    <script src="${url:resource('/javascripts/bootstrap.min.js')}"></script>
+    <script src="${url:resource('/javascripts/theme.js')}"></script>
     
     <decorator:head />
 </head>
 
-<body class="pull_top">
+<body>
+  <iminbak:navbar main="false"/>
+
+  <div class="container">
     <decorator:body/>
-
-    <!-- Scripts -->
-    <script src="http://code.jquery.com/jquery-latest.js"></script>
-    <script src="${url:resource('/javascripts/bootstrap.min.js')}"></script>
-    <script src="${url:resource('/javascripts/theme.js')}"></script>
-
-    <script type="text/javascript" src="${url:resource('/javascripts/index-slider.js')}"></script>
-	<script language="javascript"> 
-	<!-- 
-	function RealReservation() { 
-	  var url="http://real.pentour.com/index.php?pid=2542"; 
-	  open(url,'펜션예약하기','width=620,height=600,menubar=no,resizable=no,location=no,status=no,scrollbars=yes,toolbar=no'); 
-	} 
-	// --> 
-	</script>
+  </div>
+  
+  <%@include file="/WEB-INF/jsp/include/footer.jspf"%>
 	<script>
 	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),

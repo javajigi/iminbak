@@ -20,15 +20,6 @@ attribute name="question" required="true" rtexprvalue="true" type="net.slipp.dom
 						</div>
 						<div class="doc">
 							<h1 class="subject">${sf:h(question.title)}</h1>
-							<div class="tags">
-								<ul>
-								<c:forEach items="${question.pooledTags}" var="tag">
-									<li>
-										<a href="/questions/tagged/${tag.name}" class="tag">${tag.name}</a>
-									</li>
-								</c:forEach>
-								</ul>
-							</div>
 							<div class="text">${sf:wiki(question.contents)}</div>
 							<div class="share">
 								<div class="facebook sns">

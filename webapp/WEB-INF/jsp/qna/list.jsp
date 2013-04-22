@@ -20,15 +20,6 @@
 							<strong class="subject">
 								<a href="/questions/${each.questionId}">${sf:h(each.title)}</a>
 							</strong>
-							<div class="tags">
-								<ul>
-								<c:forEach items="${each.denormalizedTags}" var="tag">
-									<li>
-										<a href="/questions/tagged/${tag}" class="tag">${tag}</a>
-									</li>
-								</c:forEach>
-								</ul>
-							</div>
 						</div>
 						<div class="sub">
 							<div class="reply">

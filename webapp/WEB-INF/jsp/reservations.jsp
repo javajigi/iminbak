@@ -2,26 +2,6 @@
 	pageEncoding="UTF-8"%><%@include file="/WEB-INF/jsp/include/tags.jspf"%>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<!-- Styles -->
-<link href="${url:resource('/stylesheets/bootstrap.css')}"
-	rel="stylesheet">
-<link rel="stylesheet" type="text/css"
-	href="${url:resource('/stylesheets/theme.css')}">
-<link
-	href='http://fonts.googleapis.com/css?family=Lato:300,400,700,900,300italic,400italic,700italic,900italic'
-	rel='stylesheet' type='text/css'>
-
-<link rel="stylesheet" type="text/css"
-	href="${url:resource('/stylesheets/lib/animate.css')}"
-	media="screen, projection">
-<link rel="stylesheet"
-	href="${url:resource('/stylesheets/portfolio-item.css')}"
-	type="text/css" media="screen" />
-
-<!--[if lt IE 9]>
-      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
 </head>
 <body>
 	<iminbak:navbar main="false" />
@@ -293,13 +273,5 @@
 	</div>
 
 	<%@include file="/WEB-INF/jsp/include/footer.jspf"%>
-	<script language="javascript"> 
-	<!-- 
-	function RealReservation() { 
-	  var url="http://real.pentour.com/index.php?pid=2542"; 
-	  open(url,'펜션예약하기','width=620,height=600,menubar=no,resizable=no,location=no,status=no,scrollbars=yes,toolbar=no'); 
-	} 
-	// --> 
-	</script>
 </body>
 </html>

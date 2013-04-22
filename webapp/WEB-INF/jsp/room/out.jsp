@@ -3,7 +3,7 @@
 %>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <!-- Styles -->
     <link href="${url:resource('/stylesheets/bootstrap.css')}" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="${url:resource('/stylesheets/theme.css')}">

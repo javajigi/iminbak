@@ -14,8 +14,8 @@
 <div class="section-qna">
 	<slipp:header type="1"/>
 	<div class="row-fluid">
-		<div class="span9 qna-view">
-			<slipp:show question="${question}"/>
+		<div class="span12 qna-view">
+			<iminbak:show question="${question}"/>
 		
 			<div class="qna-comment">
 				<p class="count"><strong>${question.answerCount}</strong>개의 답변</p>
@@ -47,16 +47,9 @@
 				</sec:authorize>
 			</div>
 		</div>
-		<div class="span3 qna-side">
-			<slipp:side-tags tags="${tags}"/>
-		</div>
 	</div>
 </div>
-<script src="https://ajax.microsoft.com/ajax/jquery.validate/1.7/jquery.validate.min.js"></script>
 <script type="text/javascript" src="${url:resource('/javascripts/jquery.markitup.js')}"></script>
-<script type="text/javascript" src="${url:resource('/javascripts/sh/shCore.js')}"></script>
-<script type="text/javascript" src="${url:resource('/javascripts/sh/shAutoloader.js')}"></script>
-<script type="text/javascript" src="${url:resource('/javascripts/qna/syntaxhighlighter.js')}"></script>
 <script type="text/javascript" src="${url:resource('/javascripts/qna/qna-set.js')}"></script>
 <script type="text/javascript" src="${url:resource('/javascripts/qna/image.upload.js')}"></script>
 <script type="text/javascript" src="${url:resource('/javascripts/qna/tagparser.js')}"></script>

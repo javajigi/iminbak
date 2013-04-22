@@ -8,15 +8,12 @@
 <body>
 <div class="jumbotron">
 	<div class="container">
-		<h2>Sustainable Life, Programming, Programmer</h2>
-		<p>삶과 일의 균형을 맞추면서 행복하게 살 수 있는 세상을 꿈꿉니다.</p>
-		
 		<div class="span6 offset2">
 			<form:form action="" method="post" modelAttribute="signUpForm" cssClass="form-horizontal">
 				<fieldset>
 					<div class="control-group">
 						<div class="controls">
-							SLiPP에서 활동할 계정 : <form:input path="username" cssClass="input-xlarge focused span2"/>
+							정이 담긴 집에서 활동할 계정 : <form:input path="username" cssClass="input-xlarge focused span2"/>
 							<form:errors path="*" />
 							<input class="btn btn-success" type="submit" value="로그인" />
 						</div>

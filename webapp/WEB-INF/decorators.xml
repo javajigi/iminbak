@@ -7,6 +7,10 @@
 		<pattern>/wikis/preview*</pattern>
 		<pattern>/rooms*</pattern>
 	</excludes>
+	
+	<decorator name="questions" page="questions.jsp">
+		<pattern>/questions*</pattern>
+	</decorator>
 
 	<decorator name="default" page="default.jsp">
 		<pattern>/*</pattern>
