@@ -3,7 +3,6 @@ package net.slipp.web;
 import javax.annotation.Resource;
 
 import net.slipp.domain.qna.Question_;
-import net.slipp.domain.room.RoomType;
 import net.slipp.service.qna.QnaService;
 
 import org.springframework.beans.factory.annotation.Value;
@@ -49,11 +48,6 @@ public class HomeController {
     
     @RequestMapping("/reservations")
     public String reservations(Model model) {
-        model.addAttribute("greentea", RoomType.greentea);
-        model.addAttribute("lavender", RoomType.lavender);
-        model.addAttribute("rosemary", RoomType.rosemary);
-        model.addAttribute("sweetgreen", RoomType.sweetgreen);
-        model.addAttribute("jasmine", RoomType.jasmine);
         return "reservations";
     }    
 }
