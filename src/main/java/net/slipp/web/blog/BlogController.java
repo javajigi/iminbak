@@ -50,12 +50,6 @@ public class BlogController {
 		return "redirect:/blogs";
 	}
 	
-	@RequestMapping("/{id}")
-	public String show(@PathVariable Long id, Model model) throws Exception {
-		model.addAttribute("blog", blogRepository.findOne(id));
-		return "blog/show";
-	}
-	
 	@RequestMapping("/{id}/form")
 	public String updateForm(@PathVariable Long id, Model model) throws Exception {
 		model.addAttribute("blog", blogRepository.findOne(id));

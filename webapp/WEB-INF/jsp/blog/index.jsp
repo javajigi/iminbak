@@ -20,10 +20,11 @@
 
     <div id="blog_post">
         <div class="container">
-			<div class="span3 pull-right">
-				<a id="questionBtn" href="/blogs/form" class="btn btn-primary btn-large btn-block">글쓰기</a>
-			</div> 
         	<c:forEach items="${blogs.content}" var="each">
+			<div class="span3 pull-right">
+				<a href="/blogs/form" class="btn btn-primary">글쓰기</a>
+				<a href="/blogs/${each.blogId}/form" class="btn btn-primary">수정</a>
+			</div>
             <div class="row">
                 <div class="span12">
                     <div class="post_content">
