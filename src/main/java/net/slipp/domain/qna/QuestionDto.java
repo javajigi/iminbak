@@ -3,27 +3,17 @@ package net.slipp.domain.qna;
 public class QuestionDto {
     private Long questionId;
     
+    private String name;
+    
+    private String password;
+    
     private String title;
 
     private String contents;
     
-    private String plainTags;
-    
     public QuestionDto() {
-        
     }
     
-    public QuestionDto(String title, String contents, String plainTags) {
-    	this(null, title, contents, plainTags);
-    }
-    
-    public QuestionDto(Long questionId, String title, String contents, String plainTags) {
-    	this.questionId = questionId;
-        this.title = title;
-        this.contents = contents;
-        this.plainTags = plainTags;
-    }
-
     public Long getQuestionId() {
         return questionId;
     }
@@ -48,17 +38,21 @@ public class QuestionDto {
         this.contents = contents;
     }
 
-    public String getPlainTags() {
-        return plainTags;
-    }
+	public String getName() {
+		return name;
+	}
 
-    public void setPlainTags(String plainTags) {
-        this.plainTags = plainTags;
-    }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-    @Override
-    public String toString() {
-        return "QuestionDto [questionId=" + questionId + ", title=" + title + ", contents=" + contents + ", plainTags="
-                + plainTags + "]";
-    }
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+    
 }

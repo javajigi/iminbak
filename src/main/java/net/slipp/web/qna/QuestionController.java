@@ -49,7 +49,7 @@ public class QuestionController {
 	}
 
 	@RequestMapping("/form")
-	public String createForm(@LoginUser SocialUser loginUser, Model model) {
+	public String createForm(Model model) {
 		model.addAttribute("question", new QuestionDto());
 		return "qna/form";
 	}
