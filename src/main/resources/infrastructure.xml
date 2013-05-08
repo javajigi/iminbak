@@ -26,6 +26,7 @@
 		p:url="${database.url}"
 		p:username="${database.username}"
 		p:password="${database.password}"
+		p:validationQuery="select 1"
 	/>
 
 	<tx:annotation-driven transaction-manager="transactionManager"/>
