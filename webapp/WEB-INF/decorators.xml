@@ -5,7 +5,6 @@
 		<pattern>/popup/*</pattern>
 		<pattern>/attachments*</pattern>
 		<pattern>/wikis/preview*</pattern>
-		<pattern>/rooms*</pattern>
 	</excludes>
 	
 	<decorator name="questions" page="questions.jsp">

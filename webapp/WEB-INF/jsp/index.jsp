@@ -34,10 +34,10 @@
             <div class="row sections">
                 <div class="span6 contact">
                     <h3 class="footer_header">
-                        Contact
+                        연락처 및 계좌정보
                     </h3>
                     전화번호 : 017-515-1571<br/>
-                    <!-- 계좌번호 : 농협&nbsp;&nbsp;123-3455-789 &nbsp;&nbsp;박재성 -->
+                    계좌번호 : 농협&nbsp;&nbsp;211039-51-079732&nbsp;&nbsp;김영정
                 </div>
                 <div class="span6 recent_posts">
                     <h3 class="footer_header">

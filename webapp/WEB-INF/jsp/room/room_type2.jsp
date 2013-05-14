@@ -3,18 +3,7 @@
 %>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <!-- Styles -->
-    <link href="${url:resource('/stylesheets/bootstrap.css')}" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="${url:resource('/stylesheets/theme.css')}">
-    <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,900,300italic,400italic,700italic,900italic' rel='stylesheet' type='text/css'>
-
-    <link rel="stylesheet" type="text/css" href="${url:resource('/stylesheets/lib/animate.css')}" media="screen, projection">
-	<link rel="stylesheet" href="${url:resource('/stylesheets/portfolio-item.css')}" type="text/css" media="screen" />
-
-    <!--[if lt IE 9]>
-      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
+   <link rel="stylesheet" href="${url:resource('/stylesheets/portfolio-item.css')}" type="text/css" media="screen" />
 </head>
 <body>
 	<iminbak:navbar main="false"/>
@@ -91,7 +80,17 @@
 				    </tr>
 				  </tbody>
                 </table>
-                
+                <h2>연락처 및 계좌정보</h2>
+                <table class="table table-hover table-striped">
+				  <tbody>
+				    <tr>
+				      <td>
+				      전화번호 : 017-515-1571<br/>
+                      계좌번호 : 농협&nbsp;&nbsp;211039-51-079732&nbsp;&nbsp;김영정
+                   	</td>
+				    </tr>
+				  </tbody>
+                </table>                
                 <a href="javascript:RealReservation()" class="btn btn-primary btn-large btn-question pull-right">실시간 예약하기</a>
             </div>
         </div>

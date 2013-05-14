@@ -233,6 +233,12 @@
 						숯불 바베큐 : <strong>1만원 추가</strong>
 					</p>
 					<p>
+						전화번호 : 017-515-1571
+					</p>
+					<p>
+                      계좌번호 : 농협&nbsp;&nbsp;211039-51-079732&nbsp;&nbsp;김영정
+					</p>
+					<p>
 						<a href="javascript:RealReservation()" class="btn btn-primary btn-large btn-question pull-left">실시간 예약하기</a>
 					</p>
 				</div>
