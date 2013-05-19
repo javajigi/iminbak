@@ -17,20 +17,17 @@
 		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.1.xsd
 		http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa-1.0.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
-        
-	<import resource="applicationContext-social.xml" />
-	
+
+    <import resource="infrastructure.xml" />
+    
 	<bean id="applicationProperties" class="net.slipp.support.utils.ConvenientProperties">
 		<constructor-arg index="0">
 			<util:properties location="classpath:application-properties.xml" />
 		</constructor-arg>
 	</bean>
-    
-	<!-- Start Spring Social Security -->
-	<bean id="springSocialSecurityEntryPoint" class="org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint">
-		<constructor-arg value="/login" />
-	</bean>	
-
+	
+	<jpa:repositories base-package="net.slipp.repository" />
+	
 	<context:component-scan	base-package="net.slipp.service">
 		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller" />
 	</context:component-scan>
@@ -41,53 +38,25 @@
 		pre-post-annotations="enabled">
 	</security:global-method-security>
 
-
 	<security:authentication-manager alias="authenticationManager">
-		<security:authentication-provider ref="authenticationProvider" />	
+		<security:authentication-provider>
+			<security:user-service>
+				<security:user name="iminbak" password="1234" authorities="ROLE_ADMINISTRATOR"/>
+			</security:user-service>
+		</security:authentication-provider>	
 	</security:authentication-manager>
 	
-	<bean id="slippSecurityAuthenticationFilter" 
-		class="net.slipp.social.security.SlippSecurityAuthenticationFilter" />
-		
-
-	<bean id="authenticationProvider"
-		class="org.springframework.security.authentication.RememberMeAuthenticationProvider">
-		<constructor-arg value="${slipp.remember.token.key}" />
-	</bean>
-
-	<bean id="accessDecisionManager" class="org.springframework.security.access.vote.UnanimousBased"
-		xmlns="http://www.springframework.org/schema/beans">
-		<constructor-arg>
-			<list>
-				<bean class="org.springframework.security.access.vote.RoleVoter" />
-				<bean class="org.springframework.security.access.vote.AuthenticatedVoter" />
-			</list>
-		</constructor-arg>
-	</bean>
-
 	<security:http use-expressions="true"
-		entry-point-ref="springSocialSecurityEntryPoint" xmlns="http://www.springframework.org/schema/security">
-		<intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMINISTRATOR')" />
+		xmlns="http://www.springframework.org/schema/security">
+		<intercept-url pattern="/blogs/form" access="hasRole('ROLE_ADMINISTRATOR')" />
+		<intercept-url pattern="/blogs" method="POST" access="hasRole('ROLE_ADMINISTRATOR')" />
 
-		<security:logout logout-url="/logout" />
+		<form-login default-target-url="/blogs" />
+		
+		<logout logout-url="/logout" />
 
 		<anonymous />
-		<security:custom-filter position="FORM_LOGIN_FILTER"
-			ref="slippSecurityAuthenticationFilter" />
-
-		<remember-me services-ref="springSocialSecurityRememberMeServices" />
 	</security:http>
-
-
-	<bean id="springSocialSecurityRememberMeServices"
-		class="org.springframework.security.web.authentication.rememberme.TokenBasedRememberMeServices">
-		<property name="userDetailsService" ref="slippUserDetailsService" />
-		<property name="key" value="${slipp.remember.token.key}" />
-		<property name="alwaysRemember" value="true" />
-		<property name="tokenValiditySeconds" value="1209600" />
-	</bean>
 	
-	<task:annotation-driven executor="slippExecutor"/>
-	
-	<task:executor id="slippExecutor" pool-size="5"/>
+	<bean id="sessionService" class="net.slipp.support.security.SessionService" />
 </beans>

@@ -2,23 +2,15 @@ package net.slipp.domain.qna;
 
 import java.util.List;
 
-import net.slipp.domain.user.SocialUser;
-
 import com.google.common.collect.Lists;
 
 public class QuestionBuilder {
-	private SocialUser writer;
 	private String title;
 	private String contents;
 	private List<Answer> answers = Lists.newArrayList();
 	
 	public static QuestionBuilder aQuestion() {
 		return new QuestionBuilder();
-	}
-	
-	public QuestionBuilder withWriter(SocialUser writer) {
-		this.writer = writer;
-		return this;
 	}
 	
 	public QuestionBuilder withTitle(String title) {
@@ -37,7 +29,7 @@ public class QuestionBuilder {
 	}
 	
 	public Question build() {
-		Question question = new Question(writer, title, contents) {
+		Question question = new Question(title, contents) {
 			@Override
 			public List<Answer> getAnswers() {
 				return answers;

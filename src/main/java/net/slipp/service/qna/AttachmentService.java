@@ -5,7 +5,6 @@ import java.io.File;
 import javax.annotation.Resource;
 
 import net.slipp.domain.qna.Attachment;
-import net.slipp.domain.user.SocialUser;
 import net.slipp.repository.attachment.AttachmentRepository;
 import net.slipp.support.utils.SlippFileUtils;
 
@@ -25,22 +24,21 @@ public class AttachmentService {
 	@Resource(name = "attachmentRepository")
 	private AttachmentRepository attachmentRepository;
 	
-	public Attachment add(MultipartFile multipartFile, SocialUser uploader) {
+	public Attachment add(MultipartFile multipartFile) {
 		if (multipartFile.isEmpty()) {
 			logger.info("attachment is empty. multipartFile:{}", multipartFile.getOriginalFilename());
 			return null;
 		}
 
-		Attachment attachment = persistAttachment(multipartFile, uploader);
+		Attachment attachment = persistAttachment(multipartFile);
 		transferToAttachmentDir(multipartFile, attachment);
 
 		return attachment;
 	}
 
-	private Attachment persistAttachment(MultipartFile multipartFile, SocialUser uploader) {
+	private Attachment persistAttachment(MultipartFile multipartFile) {
 		Attachment attachment = new Attachment();
 		attachment.setOriginalFilename(multipartFile.getOriginalFilename());
-		attachment.setUploader(uploader);
 		attachmentRepository.save(attachment);
 		return attachment;
 	}

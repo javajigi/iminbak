@@ -21,18 +21,16 @@
     <div id="blog_post">
         <div class="container">
         	<c:forEach items="${blogs.content}" var="each">
-			<div class="span3 pull-right">
-				<a href="/blogs/form" class="btn btn-primary">글쓰기</a>
-				<a href="/blogs/${each.blogId}/form" class="btn btn-primary">수정</a>
-			</div>
             <div class="row">
-                <div class="span12">
+            	<div class="span2"></div>
+                <div class="span8">
                     <div class="post_content">
                         <h2>${sf:h(each.title)}</h2>
-                        <span class="date"><fmt:formatDate value="${each.createdDate}" pattern="yyyy-MM-dd HH:mm" /></span>
+                        <span class="date"><fmt:formatDate value="${each.createdDate}" pattern="yyyy-MM-dd HH:mm" />&nbsp;&nbsp;from 정이담긴집</span>
                         ${sf:wiki(each.contents)}
                     </div>
                 </div>
+            	<div class="span2"></div>                
             </div>
             </c:forEach>
 			<div class="pagination pagination-centered">

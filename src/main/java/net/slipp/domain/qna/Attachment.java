@@ -10,12 +10,10 @@ import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import net.slipp.domain.user.SocialUser;
 import net.slipp.support.jpa.CreatedDateEntityListener;
 import net.slipp.support.jpa.HasCreatedDate;
 
@@ -37,10 +35,6 @@ public class Attachment implements HasCreatedDate {
 	@GenericGenerator(name = "system-uuid", strategy = "uuid")
 	private String id;
 
-	@ManyToOne
-	@org.hibernate.annotations.ForeignKey(name = "fk_attachment_writer")
-	private SocialUser uploader;
-	
 	@Column(name = "original_filename", length = 255, nullable = false, updatable = false)
 	private String originalFilename;
 
@@ -67,14 +61,6 @@ public class Attachment implements HasCreatedDate {
 		return id;
 	}
 	
-	public void setUploader(SocialUser uploader) {
-		this.uploader = uploader;
-	}
-	
-	public SocialUser getUploader() {
-		return uploader;
-	}
-
 	public void setOriginalFilename(String originalFilename) {
 		String tempExtension = FilenameUtils.getExtension(originalFilename);
 		if (StringUtils.isBlank(tempExtension)) {

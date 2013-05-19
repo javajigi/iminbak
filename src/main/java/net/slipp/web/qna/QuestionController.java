@@ -6,9 +6,7 @@ import net.slipp.domain.qna.Answer;
 import net.slipp.domain.qna.Question;
 import net.slipp.domain.qna.QuestionDto;
 import net.slipp.domain.qna.Question_;
-import net.slipp.domain.user.SocialUser;
 import net.slipp.service.qna.QnaService;
-import net.slipp.support.web.argumentresolver.LoginUser;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,7 +14,6 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
-import org.springframework.security.access.AccessDeniedException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -55,28 +52,25 @@ public class QuestionController {
 	}
 
 	@RequestMapping(value = "", method = RequestMethod.POST)
-	public String create(@LoginUser SocialUser loginUser, QuestionDto newQuestion) {
+	public String create(QuestionDto newQuestion) {
 		logger.debug("Question : {}", newQuestion);
 
-		Question question = qnaService.createQuestion(loginUser, newQuestion);
+		Question question = qnaService.createQuestion(newQuestion);
 		return String.format("redirect:/questions/%s", question.getQuestionId());
 	}
 
 	@RequestMapping("/{id}/form")
-	public String updateForm(@LoginUser SocialUser loginUser, @PathVariable Long id, Model model) {
+	public String updateForm(@PathVariable Long id, Model model) {
 		Question question = qnaService.findByQuestionId(id);
-		if (!question.isWritedBy(loginUser)) {
-			throw new AccessDeniedException(loginUser.getUserId() + " is not owner!");
-		}
 		model.addAttribute("question", question);
 		return "qna/form";
 	}
 
 	@RequestMapping(value = "", method = RequestMethod.PUT)
-	public String update(@LoginUser SocialUser loginUser, QuestionDto updatedQuestion) {
+	public String update(QuestionDto updatedQuestion) {
 		logger.debug("Question : {}", updatedQuestion);
 
-		Question question = qnaService.updateQuestion(loginUser, updatedQuestion);
+		Question question = qnaService.updateQuestion(updatedQuestion);
 		return String.format("redirect:/questions/%s", question.getQuestionId());
 	}
 
@@ -88,8 +82,8 @@ public class QuestionController {
 	}
 	
 	@RequestMapping(value="{id}", method=RequestMethod.DELETE)
-	public String delete(@LoginUser SocialUser loginUser, @PathVariable Long id) {
-		qnaService.deleteQuestion(loginUser, id);
+	public String delete(@PathVariable Long id) {
+		qnaService.deleteQuestion(id);
 		return "redirect:/questions";
 	}
 

@@ -12,7 +12,6 @@ import net.slipp.repository.qna.QuestionRepository;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.security.access.AccessDeniedException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
@@ -26,31 +25,28 @@ public class QnaService {
 	@Resource(name = "answerRepository")
 	private AnswerRepository answerRepository;
 
-	public Question createQuestion(SocialUser loginUser, QuestionDto questionDto) {
-		Assert.notNull(loginUser, "loginUser should be not null!");
+	public Question createQuestion(QuestionDto questionDto) {
 		Assert.notNull(questionDto, "question should be not null!");
 
-		Question newQuestion = new Question(loginUser, questionDto.getTitle(), questionDto.getContents());
+		Question newQuestion = new Question(questionDto.getTitle(), questionDto.getContents());
 		Question savedQuestion = questionRepository.save(newQuestion);
 		return savedQuestion;
 	}
 
-	public Question updateQuestion(SocialUser loginUser, QuestionDto questionDto) {
-		Assert.notNull(loginUser, "loginUser should be not null!");
+	public Question updateQuestion(QuestionDto questionDto) {
 		Assert.notNull(questionDto, "question should be not null!");
 
 		Question question = questionRepository.findOne(questionDto.getQuestionId());
 
-		question.update(loginUser, questionDto.getTitle(), questionDto.getContents());
+		question.update(questionDto.getTitle(), questionDto.getContents());
 		return question;
 	}
 
-	public void deleteQuestion(SocialUser loginUser, Long questionId) {
-		Assert.notNull(loginUser, "loginUser should be not null!");
+	public void deleteQuestion(Long questionId) {
 		Assert.notNull(questionId, "questionId should be not null!");
 
 		Question question = questionRepository.findOne(questionId);
-		question.delete(loginUser);
+		question.delete();
 	}
 
 	public Question showQuestion(Long id) {
@@ -73,30 +69,22 @@ public class QnaService {
 		return answerRepository.findOne(answerId);
 	}
 
-	public void createAnswer(SocialUser loginUser, Long questionId, Answer answer) {
+	public void createAnswer(Long questionId, Answer answer) {
 		Question question = questionRepository.findOne(questionId);
-		answer.writedBy(loginUser);
 		answer.answerTo(question);
 		answerRepository.save(answer);
 	}
 
-	public void updateAnswer(SocialUser loginUser, Answer answerDto) {
+	public void updateAnswer(Answer answerDto) {
 		Answer answer = answerRepository.findOne(answerDto.getAnswerId());
-		if (!answer.isWritedBy(loginUser)) {
-			throw new AccessDeniedException(loginUser + " is not owner!");
-		}
 		answer.updateAnswer(answerDto);
 	}
 
-	public void deleteAnswer(SocialUser loginUser, Long questionId, Long answerId) {
-		Assert.notNull(loginUser, "loginUser should be not null!");
+	public void deleteAnswer(Long questionId, Long answerId) {
 		Assert.notNull(questionId, "questionId should be not null!");
 		Assert.notNull(answerId, "answerId should be not null!");
 
 		Answer answer = answerRepository.findOne(answerId);
-		if (!answer.isWritedBy(loginUser)) {
-			throw new AccessDeniedException(loginUser + " is not owner!");
-		}
 		answerRepository.delete(answer);
 		Question question = questionRepository.findOne(questionId);
 		question.deAnswered();

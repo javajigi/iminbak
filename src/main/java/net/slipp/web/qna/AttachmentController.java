@@ -10,10 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import net.slipp.domain.qna.Attachment;
-import net.slipp.domain.user.SocialUser;
 import net.slipp.service.qna.AttachmentService;
 import net.slipp.support.web.ServletDownloadManager;
-import net.slipp.support.web.argumentresolver.LoginUser;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -38,9 +36,9 @@ public class AttachmentController {
 
 	@RequestMapping(value = "", method = RequestMethod.POST)
 	public @ResponseBody
-	Map<String, Object> upload(@LoginUser SocialUser loginUser, MultipartRequest request) throws IOException {
+	Map<String, Object> upload(MultipartRequest request) throws IOException {
 		MultipartFile multipartFile = request.getFile(ATTACHMENT_FILE_INPUT_NAME);
-		Attachment attachment = attachmentService.add(multipartFile, loginUser);
+		Attachment attachment = attachmentService.add(multipartFile);
 
 		return attachment.toMap();
 	}

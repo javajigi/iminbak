@@ -18,7 +18,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import net.slipp.domain.user.SocialUser;
 import net.slipp.support.jpa.CreatedAndUpdatedDateEntityListener;
 import net.slipp.support.jpa.HasCreatedAndUpdatedDate;
 
@@ -31,10 +30,6 @@ public class Answer implements HasCreatedAndUpdatedDate, Comparable<Answer> {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long answerId;
-	
-	@ManyToOne
-	@org.hibernate.annotations.ForeignKey(name = "fk_answer_writer")
-	private SocialUser writer;
 	
 	@ElementCollection(fetch = FetchType.LAZY)
 	@CollectionTable(name = "answer_content_holder", joinColumns = @JoinColumn(name = "answer_id", unique = true))
@@ -75,10 +70,6 @@ public class Answer implements HasCreatedAndUpdatedDate, Comparable<Answer> {
 	
 	public void setAnswerId(Long answerId) {
 		this.answerId = answerId;
-	}
-
-	public SocialUser getWriter() {
-		return writer;
 	}
 
 	public void setContents(String newContents) {
@@ -122,18 +113,6 @@ public class Answer implements HasCreatedAndUpdatedDate, Comparable<Answer> {
 		this.question = question;
 		question.newAnswered();
 	}
-
-	public void writedBy(SocialUser user) {
-		this.writer = user;		
-	}
-	
-	public boolean isWritedBy(SocialUser loginUser) {
-		return writer.isSameUser(loginUser);
-	}
-	
-	public boolean isFacebookWriter() {
-		return writer.isFacebookUser();
-	}
 	
 	public void updateAnswer(Answer answerDto) {
 		this.contentsHolder = answerDto.contentsHolder;
@@ -161,7 +140,7 @@ public class Answer implements HasCreatedAndUpdatedDate, Comparable<Answer> {
 
 	@Override
 	public String toString() {
-		return "Answer [answerId=" + answerId + ", writer=" + writer + ", contentsHolder=" + contentsHolder
+		return "Answer [answerId=" + answerId + ", contentsHolder=" + contentsHolder
 				+ ", createdDate=" + createdDate + ", updatedDate=" + updatedDate + ", question=" + question + "]";
 	}
 
@@ -174,7 +153,6 @@ public class Answer implements HasCreatedAndUpdatedDate, Comparable<Answer> {
 		result = prime * result + ((createdDate == null) ? 0 : createdDate.hashCode());
 		result = prime * result + ((question == null) ? 0 : question.hashCode());
 		result = prime * result + ((updatedDate == null) ? 0 : updatedDate.hashCode());
-		result = prime * result + ((writer == null) ? 0 : writer.hashCode());
 		return result;
 	}
 
@@ -211,11 +189,6 @@ public class Answer implements HasCreatedAndUpdatedDate, Comparable<Answer> {
 			if (other.updatedDate != null)
 				return false;
 		} else if (!updatedDate.equals(other.updatedDate))
-			return false;
-		if (writer == null) {
-			if (other.writer != null)
-				return false;
-		} else if (!writer.equals(other.writer))
 			return false;
 		return true;
 	}
