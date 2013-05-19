@@ -124,14 +124,6 @@
 		</function-signature>
 	</function>
 	<function>
-		<description>로그인 사용자가 글쓴이인지의 여부를 판단한다.</description>
-		<name>isWriter</name>
-		<function-class>net.slipp.support.web.tags.SlippFunctions</function-class>
-		<function-signature>
-			java.lang.Boolean isWriter(net.slipp.domain.user.SocialUser, net.slipp.domain.user.SocialUser)
-		</function-signature>
-	</function>	
-	<function>
 		<description>위키 마크업이 적용된 글을 html로 변환한다.</description>
 		<name>wiki</name>
 		<function-class>net.slipp.support.web.tags.SlippFunctions</function-class>

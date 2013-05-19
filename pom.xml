@@ -405,6 +405,8 @@
 					<url>${database.iminbak.url}</url>
 					<username>${database.username}</username>
 					<password>${database.password}</password>
+					<createSql>CREATE DATABASE iminbak DEFAULT CHARACTER SET utf8 COLLATE
+						utf8_general_ci</createSql>
 				</configuration>
 				<dependencies>
 					<dependency>

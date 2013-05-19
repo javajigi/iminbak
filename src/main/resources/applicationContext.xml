@@ -57,6 +57,8 @@
 
 		<anonymous />
 	</security:http>
-	
-	<bean id="sessionService" class="net.slipp.support.security.SessionService" />
+
+	<bean id="passwordEncoder" class="org.springframework.security.authentication.encoding.ShaPasswordEncoder">
+	    <constructor-arg index="0" value="256"/>
+	</bean>	
 </beans>

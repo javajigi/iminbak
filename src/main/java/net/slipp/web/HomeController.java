@@ -2,8 +2,8 @@ package net.slipp.web;
 
 import javax.annotation.Resource;
 
-import net.slipp.domain.qna.Question_;
-import net.slipp.service.qna.QnaService;
+import net.slipp.domain.board.Board_;
+import net.slipp.service.board.BoardService;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.PageRequest;
@@ -22,28 +22,23 @@ public class HomeController {
 	@Value("#{applicationProperties['environment']}")
 	private String environment;
 	
-	@Resource(name = "qnaService")
-	private QnaService qnaService;
+	@Resource(name = "boardService")
+	private BoardService boardService;
 	
 	@RequestMapping("/")
 	public String home(Model model) {
-		model.addAttribute("questions", qnaService.findsQuestion(createPageable()));
+		model.addAttribute("boards", boardService.findsQuestion(createPageable()));
 		return "index";
 	}
 
 	private Pageable createPageable() {
-		Sort sort = new Sort(Direction.DESC, Question_.createdDate.getName());
+		Sort sort = new Sort(Direction.DESC, Board_.createdDate.getName());
 		return new PageRequest(DEFAULT_PAGE_NO, DEFAULT_PAGE_SIZE, sort);
 	}
 	
     @RequestMapping("/login")
     public String login() {
         return "login";
-    }
-    
-    @RequestMapping("/fblogout")
-    public String logout() {
-        return "fblogout";
     }
     
     @RequestMapping("/reservations")

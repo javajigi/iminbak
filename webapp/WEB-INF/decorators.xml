@@ -7,8 +7,8 @@
 		<pattern>/wikis/preview*</pattern>
 	</excludes>
 	
-	<decorator name="questions" page="questions.jsp">
-		<pattern>/questions*</pattern>
+	<decorator name="boards" page="boards.jsp">
+		<pattern>/boards*</pattern>
 		<pattern>/blogs/form</pattern>
 	</decorator>
 

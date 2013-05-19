@@ -14,16 +14,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
-import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import com.google.common.collect.Iterables;
-import com.google.common.collect.Lists;
-
-import net.slipp.domain.user.SocialUser;
 import net.slipp.support.jpa.CreatedDateEntityListener;
 import net.slipp.support.jpa.HasCreatedDate;
+
+import com.google.common.collect.Iterables;
+import com.google.common.collect.Lists;
 
 @Entity
 @EntityListeners({ CreatedDateEntityListener.class })
@@ -31,10 +29,6 @@ public class Blog implements HasCreatedDate {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long blogId;
-
-    @ManyToOne
-    @org.hibernate.annotations.ForeignKey(name = "fk_blog_writer")
-    private SocialUser writer;
 
     @Column(name = "title", length = 100, nullable = false)
     private String title;
@@ -56,14 +50,6 @@ public class Blog implements HasCreatedDate {
 
 	public void setBlogId(Long blogId) {
 		this.blogId = blogId;
-	}
-
-	public SocialUser getWriter() {
-		return writer;
-	}
-
-	public void setWriter(SocialUser writer) {
-		this.writer = writer;
 	}
 
 	public String getTitle() {
@@ -107,7 +93,7 @@ public class Blog implements HasCreatedDate {
 
 	@Override
 	public String toString() {
-		return "Blog [blogId=" + blogId + ", writer=" + writer + ", title=" + title + ", contentsHolder="
+		return "Blog [blogId=" + blogId + ", title=" + title + ", contentsHolder="
 				+ contentsHolder + ", createdDate=" + createdDate + "]";
 	}
 }
