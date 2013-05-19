@@ -18,6 +18,14 @@ public class BoardDto {
 	public BoardDto() {
 	}
 
+	public BoardDto(Board board) {
+		this.boardId = board.getBoardId();
+		this.boardType = board.getBoardType();
+		this.name = board.getName();
+		this.title = board.getTitle();
+		this.contents = board.getContents();
+	}
+
 	public Long getBoardId() {
 		return boardId;
 	}

@@ -5,7 +5,8 @@ import javax.annotation.Resource;
 import net.slipp.domain.board.Answer;
 import net.slipp.domain.board.Board;
 import net.slipp.domain.board.BoardDto;
-import net.slipp.domain.board.QnaSpecifications;
+import net.slipp.domain.board.BoardType;
+import net.slipp.domain.board.BoardSpecifications;
 import net.slipp.repository.board.AnswerRepository;
 import net.slipp.repository.board.BoardRepository;
 
@@ -36,20 +37,20 @@ public class BoardService {
 		return savedBoard;
 	}
 
-	public Board updateQuestion(BoardDto boardDto) {
+	public Board updateBoard(BoardDto boardDto) {
 		Assert.notNull(boardDto, "question should be not null!");
 
-		Board question = boardRepository.findOne(boardDto.getBoardId());
-
-		question.update(boardDto.getTitle(), boardDto.getContents());
-		return question;
+		Board board = boardRepository.findOne(boardDto.getBoardId());
+		String encodedPassword = passwordEncoder.encodePassword(boardDto.getPassword(), null);
+		board.update(boardDto.getName(), encodedPassword, boardDto.getTitle(), boardDto.getContents());
+		return board;
 	}
 
-	public void deleteQuestion(Long questionId) {
+	public void deleteQuestion(Long questionId, String password) {
 		Assert.notNull(questionId, "questionId should be not null!");
 
 		Board question = boardRepository.findOne(questionId);
-		question.delete();
+		question.delete(passwordEncoder.encodePassword(password, null));
 	}
 
 	public Board showBoard(Long id) {
@@ -60,11 +61,11 @@ public class BoardService {
 		return question;
 	}
 
-	public Page<Board> findsQuestion(Pageable pageable) {
-		return boardRepository.findAll(QnaSpecifications.equalsIsDelete(false), pageable);
+	public Page<Board> findsBoard(BoardType boardType, Pageable pageable) {
+		return boardRepository.findAll(BoardSpecifications.findBoards(boardType, false), pageable);
 	}
 
-	public Board findByQuestionId(Long id) {
+	public Board findByBoardId(Long id) {
 		return boardRepository.findOne(id);
 	}
 
@@ -83,13 +84,13 @@ public class BoardService {
 		answer.updateAnswer(answerDto);
 	}
 
-	public void deleteAnswer(Long questionId, Long answerId) {
-		Assert.notNull(questionId, "questionId should be not null!");
+	public void deleteAnswer(Long boardId, Long answerId) {
+		Assert.notNull(boardId, "questionId should be not null!");
 		Assert.notNull(answerId, "answerId should be not null!");
 
 		Answer answer = answerRepository.findOne(answerId);
 		answerRepository.delete(answer);
-		Board question = boardRepository.findOne(questionId);
+		Board question = boardRepository.findOne(boardId);
 		question.deAnswered();
 	}
 }

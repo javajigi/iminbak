@@ -25,6 +25,9 @@ import javax.persistence.TemporalType;
 import net.slipp.support.jpa.CreatedAndUpdatedDateEntityListener;
 import net.slipp.support.jpa.HasCreatedAndUpdatedDate;
 
+import org.apache.commons.lang.StringUtils;
+import org.springframework.security.access.AccessDeniedException;
+
 import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
 
@@ -165,11 +168,18 @@ public class Board implements HasCreatedAndUpdatedDate {
     public boolean isDeleted() {
         return deleted;
     }
+    
+    public boolean isSamePassword(String newPassword) {
+    	if (StringUtils.isBlank(password)) {
+    		return false;
+    	}
+    	return password.equals(newPassword);
+    }
 
-    public void delete() {
-//        if (!isWritedBy(loginUser)) {
-//            throw new AccessDeniedException(loginUser.getDisplayName() + " is not owner!");
-//        }
+    public void delete(String newPassword) {
+        if (!isSamePassword(newPassword)) {
+            throw new AccessDeniedException("Password mismatch");
+        }
         this.deleted = true;
     }
 
@@ -185,11 +195,12 @@ public class Board implements HasCreatedAndUpdatedDate {
         this.answerCount -= 1;
     }
 
-    public void update(String title, String contents) {
-//        if (!isWritedBy(loginUser)) {
-//            throw new AccessDeniedException(loginUser.getDisplayName() + " is not owner!");
-//        }
+    public void update(String name, String newPassword, String title, String contents) {
+    	if (!isSamePassword(newPassword)) {
+            throw new AccessDeniedException("Password mismatch");
+        }
     	
+    	this.name = name;
         this.title = title;
         this.contentsHolder = Lists.newArrayList(contents);
     }

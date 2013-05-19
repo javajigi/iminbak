@@ -38,7 +38,7 @@ attribute name="board" required="true" rtexprvalue="true" type="net.slipp.domain
 							</div>
 							<div class="util">
 								<a id="updateQuestionBtn" href="/boards/${boardType}/${board.boardId}/form" class="btn btn-primary">수정</a>
-								<a id="deleteQuestionBtn" href="#" class="btn btn-danger">삭제</a>
+								<a id="deleteQuestionBtn" href="/boards/${boardType}/${board.boardId}/deleteForm" class="btn btn-danger">삭제</a>
 								<a href="/boards/${boardType}"><button class="btn">목록으로</button></a>
 							</div>
 						</div>

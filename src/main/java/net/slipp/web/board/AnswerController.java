@@ -40,7 +40,7 @@ public class AnswerController {
 	public String updateForm(@PathVariable Long questionId, @PathVariable Long answerId, Model model)
 		throws Exception {
 		Answer answer = boardService.findAnswerById(answerId);
-		model.addAttribute("question", boardService.findByQuestionId(questionId));
+		model.addAttribute("question", boardService.findByBoardId(questionId));
 		model.addAttribute("answer", answer);
 		return "board/answer";
 	}
