@@ -12,6 +12,7 @@ import net.slipp.repository.board.BoardRepository;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.authentication.encoding.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -54,7 +55,6 @@ public class BoardService {
 	}
 
 	public Board showBoard(Long id) {
-		
 		Board question = boardRepository.findOne(id);
 		question.show();
 
@@ -74,21 +74,27 @@ public class BoardService {
 	}
 
 	public void createAnswer(Long questionId, Answer answer) {
-		Board question = boardRepository.findOne(questionId);
-		answer.answerTo(question);
+		Board board = boardRepository.findOne(questionId);
+		answer.answerTo(board);
+		answer.encodePassword(passwordEncoder);
 		answerRepository.save(answer);
 	}
 
 	public void updateAnswer(Answer answerDto) {
 		Answer answer = answerRepository.findOne(answerDto.getAnswerId());
-		answer.updateAnswer(answerDto);
+		answer.updateAnswer(answerDto, passwordEncoder);
 	}
 
-	public void deleteAnswer(Long boardId, Long answerId) {
+	public void deleteAnswer(Long boardId, Long answerId, String password) {
 		Assert.notNull(boardId, "questionId should be not null!");
 		Assert.notNull(answerId, "answerId should be not null!");
 
 		Answer answer = answerRepository.findOne(answerId);
+		String encodedPassword = passwordEncoder.encodePassword(password, null);
+		if (!answer.isSamePassword(encodedPassword)) {
+			 throw new AccessDeniedException("Password mismatch");
+		}
+		
 		answerRepository.delete(answer);
 		Board question = boardRepository.findOne(boardId);
 		question.deAnswered();

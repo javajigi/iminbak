@@ -14,35 +14,39 @@
 <div class="section-qna">
 	<slipp:header type="1"/>
 	<div class="row-fluid">
-		<div class="span9 qna-view">
-			<slipp:show question="${question}"/>
-		
+		<div class="span1"></div>
+		<div class="span10 qna-view">
+			<iminbak:show board="${board}"/>
+			
 			<div class="qna-comment">
-				<sec:authorize access="hasRole('ROLE_USER')">
-					<form:form modelAttribute="answer" action="/questions/${question.questionId}/answers/${answer.answerId}" method="PUT" cssClass="form-horizontal">
-						<fieldset>
-							<form:textarea path="contents"  cols="80" rows="5"/>
-							<div class="pull-right">
-								<button id="answerBtn" type="submit" class="btn btn-success">답변하기</button>
-							</div>
-						</fieldset>
-					</form:form>
-				</sec:authorize>
+				<form:form modelAttribute="answer" cssClass="form-horizontal" action="/boards/${boardType}/${board.boardId}/answers/${answer.answerId}" method="PUT">
+					<fieldset>
+						<div class="control-group">
+							<form:textarea path="contents" cols="80" rows="5"/>
+						</div>
+						<div class="control-group">
+							<form:input path="name" size="40" placeholder="이름" />
+						</div>
+						<div class="control-group">
+							<form:password path="rawPassword" size="40" placeholder="비밀번호" />
+							<c:if test="${not empty errorMessage}">
+							<label for="password" generated="true" class="error" style="">${errorMessage}</label>
+							</c:if>
+						</div>
+						<div class="pull-right">
+							<button id="answerBtn" type="submit" class="btn btn-success">답변하기</button>
+						</div>
+					</fieldset>				
+				</form:form>
 			</div>
 		</div>
-		<div class="span3 qna-side">
-			<slipp:side-tags tags="${tags}"/>
-		</div>		
+		<div class="span1"></div>
 	</div>
 </div>
-<script src="https://ajax.microsoft.com/ajax/jquery.validate/1.7/jquery.validate.min.js"></script>
+<script src="http://ajax.microsoft.com/ajax/jquery.validate/1.7/jquery.validate.min.js"></script>
 <script type="text/javascript" src="${url:resource('/javascripts/jquery.markitup.js')}"></script>
-<script type="text/javascript" src="${url:resource('/javascripts/sh/shCore.js')}"></script>
-<script type="text/javascript" src="${url:resource('/javascripts/sh/shAutoloader.js')}"></script>
-<script type="text/javascript" src="${url:resource('/javascripts/qna/syntaxhighlighter.js')}"></script>
-<script type="text/javascript" src="${url:resource('/javascripts/qna/qna-set.js')}"></script>
 <script type="text/javascript" src="${url:resource('/javascripts/qna/image.upload.js')}"></script>
-<script type="text/javascript" src="${url:resource('/javascripts/qna/tagparser.js')}"></script>
+<script type="text/javascript" src="${url:resource('/javascripts/qna/qna-set.js')}"></script>
 <script type="text/javascript" src="${url:resource('/javascripts/qna/show.js')}"></script>
 </body>
 </html>

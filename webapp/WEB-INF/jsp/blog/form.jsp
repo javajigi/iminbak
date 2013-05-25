@@ -11,7 +11,8 @@
 <div class="section-qna">
 	<slipp:header type="1"/>
 	<div class="row-fluid">
-		<div class="span9 qna-form">
+		<div class="span1"></div>
+		<div class="span10 qna-form">
 			<c:set var="method" value="POST" />
 			<c:if test="${not empty question.questionId}">
 			<c:set var="method" value="PUT" />
@@ -31,6 +32,7 @@
 				</fieldset>				
 			</form:form>
 		</div>
+		<div class="span1"></div>
 	</div>
 </div>
 

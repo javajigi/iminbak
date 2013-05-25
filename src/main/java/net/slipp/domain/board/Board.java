@@ -42,7 +42,7 @@ public class Board implements HasCreatedAndUpdatedDate {
 	@Column(name = "board_type", columnDefinition = BoardType.COLUMN_DEFINITION)
 	private BoardType boardType;
 	
-    @Column(name = "board_name", length = 20, nullable = false)
+    @Column(name = "name", length = 20, nullable = false)
     private String name;
     
     @Column(name = "password", length = 100, nullable = false)
@@ -209,15 +209,8 @@ public class Board implements HasCreatedAndUpdatedDate {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + answerCount;
-		result = prime * result + ((answers == null) ? 0 : answers.hashCode());
-		result = prime * result + ((contentsHolder == null) ? 0 : contentsHolder.hashCode());
-		result = prime * result + ((createdDate == null) ? 0 : createdDate.hashCode());
-		result = prime * result + (deleted ? 1231 : 1237);
 		result = prime * result + ((boardId == null) ? 0 : boardId.hashCode());
-		result = prime * result + showCount;
-		result = prime * result + ((title == null) ? 0 : title.hashCode());
-		result = prime * result + ((updatedDate == null) ? 0 : updatedDate.hashCode());
+		result = prime * result + ((boardType == null) ? 0 : boardType.hashCode());
 		return result;
 	}
 
@@ -230,41 +223,12 @@ public class Board implements HasCreatedAndUpdatedDate {
 		if (getClass() != obj.getClass())
 			return false;
 		Board other = (Board) obj;
-		if (answerCount != other.answerCount)
-			return false;
-		if (answers == null) {
-			if (other.answers != null)
-				return false;
-		} else if (!answers.equals(other.answers))
-			return false;
-		if (contentsHolder == null) {
-			if (other.contentsHolder != null)
-				return false;
-		} else if (!contentsHolder.equals(other.contentsHolder))
-			return false;
-		if (createdDate == null) {
-			if (other.createdDate != null)
-				return false;
-		} else if (!createdDate.equals(other.createdDate))
-			return false;
-		if (deleted != other.deleted)
-			return false;
 		if (boardId == null) {
 			if (other.boardId != null)
 				return false;
 		} else if (!boardId.equals(other.boardId))
 			return false;
-		if (showCount != other.showCount)
-			return false;
-		if (title == null) {
-			if (other.title != null)
-				return false;
-		} else if (!title.equals(other.title))
-			return false;
-		if (updatedDate == null) {
-			if (other.updatedDate != null)
-				return false;
-		} else if (!updatedDate.equals(other.updatedDate))
+		if (boardType != other.boardType)
 			return false;
 		return true;
 	}
@@ -273,6 +237,6 @@ public class Board implements HasCreatedAndUpdatedDate {
 	public String toString() {
 		return "Question [questionId=" + boardId + ", title=" + title + ", contentsHolder="
 				+ contentsHolder + ", createdDate=" + createdDate + ", updatedDate=" + updatedDate + ", answerCount="
-				+ answerCount + ", showCount=" + showCount + ", answers=" + answers + ", deleted=" + deleted + "]";
+				+ answerCount + ", showCount=" + showCount + ", deleted=" + deleted + "]";
 	}
 }

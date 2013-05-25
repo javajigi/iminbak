@@ -13,12 +13,11 @@
 	<div class="row-fluid">
 		<div class="span1"></div>
 		<div class="span10 qna-form">
-			${board.title} 글을 삭제하시겠습니까?<br/>
-			<form:form modelAttribute="board" cssClass="form-horizontal" action="/boards/${boardType}/${board.boardId}" method="DELETE">
-				<form:hidden path="boardId"/>
+			<form:form modelAttribute="answer" cssClass="form-horizontal" action="/boards/${boardType}/${board.boardId}/answers/${answer.answerId}" method="DELETE">
+				<form:hidden path="answerId"/>
 				<fieldset>
 					<div class="control-group">
-						<form:password path="password" size="40" placeholder="비밀번호" />
+						<form:password path="rawPassword" size="40" placeholder="비밀번호" />
 						<c:if test="${not empty errorMessage}">
 						<label for="password" generated="true" class="error" style="">${errorMessage}</label>
 						</c:if>

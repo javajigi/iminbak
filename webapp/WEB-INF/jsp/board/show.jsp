@@ -14,35 +14,42 @@
 <div class="section-qna">
 	<slipp:header type="1"/>
 	<div class="row-fluid">
-		<div class="span12 qna-view">
+		<div class="span1"></div>
+		<div class="span10 qna-view">
 			<iminbak:show board="${board}"/>
 		
 			<div class="qna-comment">
 				<p class="count"><strong>${board.answerCount}</strong>개의 답변</p>
 				<ul class="list">
 					<c:forEach items="${board.answers}" var="each">
-						<slipp:answer each="${each}" isBest="false"/>
+						<iminbak:answer each="${each}"/>
 					</c:forEach>
 				</ul>
-				<form id="deleteAnswerForm" action="/boards/${boardType}/${board.boardId}/answers/" method="POST" class="flyaway">
-					<input type="hidden" name="_method" value="DELETE" />
-				</form>
-				<form id="likeAnswerForm" action="/boards/${boardType}/${board.boardId}/answers" method="POST" class="flyaway">
-				</form>
-				<sec:authorize access="hasRole('ROLE_USER')">
-					<form:form modelAttribute="answer" action="/boards/${boardType}/${board.boardId}/answers" method="POST" cssClass="form-horizontal">
-						<fieldset>
-							<form:textarea path="contents"  cols="80" rows="5"/>
-							<div class="pull-right">
-								<button id="answerBtn" type="submit" class="btn btn-success">답변하기</button>
-							</div>
-						</fieldset>
-					</form:form>
-				</sec:authorize>
+				<form:form modelAttribute="answer" cssClass="form-horizontal" action="/boards/${boardType}/${board.boardId}/answers" method="POST">
+					<fieldset>
+						<div class="control-group">
+							<form:textarea path="contents" cols="80" rows="5"/>
+						</div>
+						<div class="control-group">
+							<form:input path="name" size="40" placeholder="이름" />
+						</div>
+						<div class="control-group">
+							<form:password path="rawPassword" size="40" placeholder="비밀번호" />
+							<c:if test="${not empty errorMessage}">
+							<label for="password" generated="true" class="error" style="">${errorMessage}</label>
+							</c:if>
+						</div>
+						<div class="pull-right">
+							<button id="answerBtn" type="submit" class="btn btn-success">답변하기</button>
+						</div>
+					</fieldset>				
+				</form:form>
 			</div>
 		</div>
+		<div class="span1"></div>
 	</div>
 </div>
+<script src="http://ajax.microsoft.com/ajax/jquery.validate/1.7/jquery.validate.min.js"></script>
 <script type="text/javascript" src="${url:resource('/javascripts/jquery.markitup.js')}"></script>
 <script type="text/javascript" src="${url:resource('/javascripts/qna/qna-set.js')}"></script>
 <script type="text/javascript" src="${url:resource('/javascripts/qna/image.upload.js')}"></script>

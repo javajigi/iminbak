@@ -33,14 +33,14 @@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
                             <li><a href="/rooms/rosemary">로즈마리</a></li>
                             <li><a href="/rooms/sweetgreen">스위트그린</a></li>
                             <li><a href="/rooms/jasmine">자스민</a></li>
+		                    <li><a href="/rooms/out">야외</a></li>
                         </ul>
                     </li>
-                    <li><a href="/rooms/out">야외</a></li>
                     <li><a href="/reservations">예약정보</a></li>
                     <li><a href="/maps">찾아오시는길</a></li>
-                    <!-- 
-                    <li><a href="/questions">문의게시판</a></li>
-                     -->
+                    <li><a href="/boards/free">문의게시판</a></li>
+                    <li><a href="/boards/review">여행후기</a></li>
+                    <li><a href="/blogs">블로그</a></li>
                 </ul>
             </div>
         </div>

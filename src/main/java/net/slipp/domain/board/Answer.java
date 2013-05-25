@@ -17,6 +17,11 @@ import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
+
+import org.apache.commons.lang.StringUtils;
+import org.springframework.security.access.AccessDeniedException;
+import org.springframework.security.authentication.encoding.PasswordEncoder;
 
 import net.slipp.support.jpa.CreatedAndUpdatedDateEntityListener;
 import net.slipp.support.jpa.HasCreatedAndUpdatedDate;
@@ -26,10 +31,19 @@ import com.google.common.collect.Lists;
 
 @Entity
 @EntityListeners({ CreatedAndUpdatedDateEntityListener.class })
-public class Answer implements HasCreatedAndUpdatedDate, Comparable<Answer> {
+public class Answer implements HasCreatedAndUpdatedDate {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long answerId;
+	
+    @Column(name = "name", length = 20, nullable = false)
+    private String name;
+    
+    @Transient
+    private String rawPassword;
+    
+    @Column(name = "password", length = 100, nullable = false)
+    private String password;
 	
 	@ElementCollection(fetch = FetchType.LAZY)
 	@CollectionTable(name = "answer_content_holder", joinColumns = @JoinColumn(name = "answer_id", unique = true))
@@ -45,9 +59,6 @@ public class Answer implements HasCreatedAndUpdatedDate, Comparable<Answer> {
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "updated_date", nullable = false)
 	private Date updatedDate;
-	
-	@Column(name = "sum_like", nullable = true, columnDefinition="integer DEFAULT 0")
-	private Integer sumLike = 0;
 	
 	@ManyToOne
 	@org.hibernate.annotations.ForeignKey(name = "fk_answer_parent_id")
@@ -70,6 +81,26 @@ public class Answer implements HasCreatedAndUpdatedDate, Comparable<Answer> {
 	
 	public void setAnswerId(Long answerId) {
 		this.answerId = answerId;
+	}
+	
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public void encodePassword(PasswordEncoder encoder) {
+		this.password = encoder.encodePassword(getRawPassword(), null);
+	}
+	
+	public String getRawPassword() {
+		return rawPassword;
+	}
+
+	public void setRawPassword(String rawPassword) {
+		this.rawPassword = rawPassword;
 	}
 
 	public void setContents(String newContents) {
@@ -109,39 +140,32 @@ public class Answer implements HasCreatedAndUpdatedDate, Comparable<Answer> {
 		this.updatedDate = updatedDate;
 	}
 
-	public void answerTo(Board question) {
-		this.board = question;
-		question.newAnswered();
+	public void answerTo(Board board) {
+		this.board = board;
+		board.newAnswered();
 	}
 	
-	public void updateAnswer(Answer answerDto) {
+    public boolean isSamePassword(String newPassword) {
+    	if (StringUtils.isBlank(password)) {
+    		return false;
+    	}
+    	return password.equals(newPassword);
+    }
+	
+	public void updateAnswer(Answer answerDto, PasswordEncoder encoder) {
+		answerDto.encodePassword(encoder);
+    	if (!isSamePassword(answerDto.password)) {
+            throw new AccessDeniedException("Password mismatch");
+        }
+		
+    	this.name = answerDto.name;
 		this.contentsHolder = answerDto.contentsHolder;
 	}
 	
-	public Integer getSumLike() {
-		return sumLike;
-	}
-
-	public void upRank() {
-		this.sumLike += 1;
-	}
-	
-	boolean likedMoreThan(int totalLiked) {
-		if (getSumLike() >= totalLiked) {
-			return true;
-		}
-		return false;
-	}
-	
-	@Override
-	public int compareTo(Answer o) {
-		return o.getSumLike().compareTo(getSumLike());
-	}
-
 	@Override
 	public String toString() {
 		return "Answer [answerId=" + answerId + ", contentsHolder=" + contentsHolder
-				+ ", createdDate=" + createdDate + ", updatedDate=" + updatedDate + ", question=" + board + "]";
+				+ ", createdDate=" + createdDate + ", updatedDate=" + updatedDate + "]";
 	}
 
 	@Override
@@ -149,10 +173,6 @@ public class Answer implements HasCreatedAndUpdatedDate, Comparable<Answer> {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((answerId == null) ? 0 : answerId.hashCode());
-		result = prime * result + ((contentsHolder == null) ? 0 : contentsHolder.hashCode());
-		result = prime * result + ((createdDate == null) ? 0 : createdDate.hashCode());
-		result = prime * result + ((board == null) ? 0 : board.hashCode());
-		result = prime * result + ((updatedDate == null) ? 0 : updatedDate.hashCode());
 		return result;
 	}
 
@@ -169,26 +189,6 @@ public class Answer implements HasCreatedAndUpdatedDate, Comparable<Answer> {
 			if (other.answerId != null)
 				return false;
 		} else if (!answerId.equals(other.answerId))
-			return false;
-		if (contentsHolder == null) {
-			if (other.contentsHolder != null)
-				return false;
-		} else if (!contentsHolder.equals(other.contentsHolder))
-			return false;
-		if (createdDate == null) {
-			if (other.createdDate != null)
-				return false;
-		} else if (!createdDate.equals(other.createdDate))
-			return false;
-		if (board == null) {
-			if (other.board != null)
-				return false;
-		} else if (!board.equals(other.board))
-			return false;
-		if (updatedDate == null) {
-			if (other.updatedDate != null)
-				return false;
-		} else if (!updatedDate.equals(other.updatedDate))
 			return false;
 		return true;
 	}
