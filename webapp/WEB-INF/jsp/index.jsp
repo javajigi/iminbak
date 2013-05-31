@@ -43,30 +43,13 @@
                     <h3 class="footer_header">
                         최근 블로그 글
                     </h3>
-                   	<!-- 
+                    <c:forEach items="${blogs.content}" var="each" varStatus="status">
                     <div class="post">
-                        <a href="blogpost.html">
-                            <img src="${url:resource('/images/recent_post1.png')}" class="img-circle" />
-                        </a>
-                        <div class="date">
-                            Wed, 12 Dec
-                        </div>
-                        <a href="blogpost.html" class="title">
-                            Randomised words which don't look embarrasing hidden.
-                        </a>
+                    	<a href="/blogs?page=${status.count}" class="title">${each.title}</a><br/>
+                        ${sf:cut(each.contents, 100, '...')}&nbsp;&nbsp;<fmt:formatDate value="${each.createdDate}" pattern="yyyy-MM-dd HH:mm" />&nbsp;&nbsp;from 정이담긴집
                     </div>
-                    <div class="post">
-                        <a href="blogpost.html">
-                            <img src="${url:resource('/images/recent_post2.png')}" class="img-circle" />
-                        </a>
-                        <div class="date">
-                            Mon, 12 Dec
-                        </div>
-                        <a href="blogpost.html" class="title">
-                            Randomised words which don't look embarrasing hidden.
-                        </a>
-                    </div>
-                    -->
+                    <br/>                 
+                    </c:forEach>
                 </div>
             </div>
         </div>
