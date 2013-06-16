@@ -78,6 +78,9 @@ public class Board implements HasCreatedAndUpdatedDate {
 
     @Column(name = "deleted", nullable = false)
     private boolean deleted = false;
+    
+    @Column(name = "ipaddress", length=100)
+    private String ipaddress;    
 
     public Board() {
     }
@@ -92,13 +95,13 @@ public class Board implements HasCreatedAndUpdatedDate {
         this.contentsHolder = Lists.newArrayList(contents);
     }
     
-    public Board(BoardType boardType, String name, String password, String title, String contents) {
+    public Board(BoardType boardType, String name, String password, String title, String contents, String ipaddress) {
     	this.boardType = boardType;
     	this.name = name;
     	this.password = password;
         this.title = title;
         this.contentsHolder = Lists.newArrayList(contents);
-
+        this.ipaddress = ipaddress;
     }
     
 	public List<Answer> getAnswers() {
@@ -169,7 +172,11 @@ public class Board implements HasCreatedAndUpdatedDate {
         return deleted;
     }
     
-    public boolean isSamePassword(String newPassword) {
+    public String getIpaddress() {
+		return ipaddress;
+	}
+
+	public boolean isSamePassword(String newPassword) {
     	if (StringUtils.isBlank(password)) {
     		return false;
     	}

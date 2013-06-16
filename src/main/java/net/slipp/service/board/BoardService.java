@@ -1,12 +1,14 @@
 package net.slipp.service.board;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import net.slipp.domain.board.Answer;
 import net.slipp.domain.board.Board;
 import net.slipp.domain.board.BoardDto;
-import net.slipp.domain.board.BoardType;
 import net.slipp.domain.board.BoardSpecifications;
+import net.slipp.domain.board.BoardType;
 import net.slipp.repository.board.AnswerRepository;
 import net.slipp.repository.board.BoardRepository;
 
@@ -30,10 +32,10 @@ public class BoardService {
     @Resource(name = "passwordEncoder")
     private PasswordEncoder passwordEncoder;
 
-	public Board createBoard(BoardDto boardDto) {
+	public Board createBoard(BoardDto boardDto, String ipaddress) {
 		Assert.notNull(boardDto, "question should be not null!");
 
-		Board newBoard = boardDto.createBoard(passwordEncoder);
+		Board newBoard = boardDto.createBoard(passwordEncoder, ipaddress);
 		Board savedBoard = boardRepository.save(newBoard);
 		return savedBoard;
 	}
@@ -47,11 +49,21 @@ public class BoardService {
 		return board;
 	}
 
-	public void deleteQuestion(Long questionId, String password) {
-		Assert.notNull(questionId, "questionId should be not null!");
+	public void deleteBoard(Long boardId, String password) {
+		Assert.notNull(boardId, "questionId should be not null!");
 
-		Board question = boardRepository.findOne(questionId);
-		question.delete(passwordEncoder.encodePassword(password, null));
+		Board board = boardRepository.findOne(boardId);
+		board.delete(passwordEncoder.encodePassword(password, null));
+	}
+	
+	public void deleteBoard(Long boardId) {
+		Assert.notNull(boardId, "questionId should be not null!");
+		Board board = boardRepository.findOne(boardId);
+		List<Answer> answers = answerRepository.findByBoard(board);
+		for (Answer answer : answers) {
+			answerRepository.delete(answer);
+		}
+		boardRepository.delete(board);
 	}
 
 	public Board showBoard(Long id) {

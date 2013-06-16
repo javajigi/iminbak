@@ -74,8 +74,8 @@ public class BoardDto {
 		this.password = password;
 	}
 	
-	public Board createBoard(PasswordEncoder passwordEncoder) {
+	public Board createBoard(PasswordEncoder passwordEncoder, String ipaddress) {
 		String encodedPassword = passwordEncoder.encodePassword(password, null);
-		return new Board(boardType, name, encodedPassword, title, contents);
+		return new Board(boardType, name, encodedPassword, title, contents, ipaddress);
 	}
 }

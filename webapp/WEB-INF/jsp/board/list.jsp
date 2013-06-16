@@ -31,6 +31,15 @@
 								<span class="time">
 									<fmt:formatDate value="${each.createdDate}" pattern="yyyy-MM-dd HH:mm" />  
 								</span>
+								&nbsp;
+								<sec:authorize access="hasRole('ROLE_ADMINISTRATOR')">
+								${each.ipaddress}&nbsp;
+								<form id="board" class="form-horizontal" action="/boards/${boardType}/${each.boardId}" method="post">
+									<input type="hidden" name="_method" value="DELETE">
+									<input id="boardId" name="boardId" type="hidden" value="${each.boardId}">
+									<button id="confirmBtn" type="submit" class="btn btn-success">삭제하기</button>
+								</form>								
+								</sec:authorize>
 							</div>
 						</div>
 					</div>					

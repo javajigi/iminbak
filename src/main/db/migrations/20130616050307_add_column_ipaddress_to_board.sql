@@ -1,0 +1,1 @@
+alter table board add column ipaddress varchar(100);

@@ -1,6 +1,9 @@
 package net.slipp.web.board;
 
+import java.util.Collection;
+
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 import net.slipp.domain.board.Answer;
 import net.slipp.domain.board.Board;
@@ -16,6 +19,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.security.access.AccessDeniedException;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -56,9 +62,9 @@ public class BoardController {
 	}
 
 	@RequestMapping(value = "", method = RequestMethod.POST)
-	public String create(@PathVariable BoardType boardType, BoardDto newBoard) {
+	public String create(@PathVariable BoardType boardType, BoardDto newBoard, HttpServletRequest request) {
 		log.debug("Question : {}", newBoard);
-		Board board = boardService.createBoard(newBoard);
+		Board board = boardService.createBoard(newBoard, request.getRemoteAddr());
 		return String.format("redirect:/boards/%s/%s", boardType.name(), board.getBoardId());
 	}
 
@@ -101,8 +107,13 @@ public class BoardController {
 	
 	@RequestMapping(value="/{id}", method=RequestMethod.DELETE)
 	public String delete(@PathVariable BoardType boardType, BoardDto deleteBoard, Model model) {
+		if (hasRole("ROLE_ADMINISTRATOR")){
+			boardService.deleteBoard(deleteBoard.getBoardId());
+			return String.format("redirect:/boards/%s", boardType.name());
+		}
+		
 		try {
-			boardService.deleteQuestion(deleteBoard.getBoardId(), deleteBoard.getPassword());
+			boardService.deleteBoard(deleteBoard.getBoardId(), deleteBoard.getPassword());
 			return String.format("redirect:/boards/%s", boardType.name());
 		} catch (AccessDeniedException e) {
 			model.addAttribute("boardType", boardType);
@@ -111,6 +122,21 @@ public class BoardController {
 			return "board/delete";
 		}
 	}
+	
+	private boolean hasRole(String role) {
+		Authentication authentication = getAuthentication();
+		Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
+		for (GrantedAuthority grantedAuthority : authorities) {
+			if (role.equals(grantedAuthority.getAuthority())) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+    private Authentication getAuthentication() {
+        return SecurityContextHolder.getContext().getAuthentication();
+    }
 
 	private Integer revisedPage(Integer page) {
 		if (page == null) {
