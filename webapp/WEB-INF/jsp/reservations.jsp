@@ -224,7 +224,7 @@
 				<div class="span4 right_box">
 					<h2>예약 안내</h2>
 					<p>
-						<strong>성수기 안내</strong> : 여름 7월 16일 ~ 8월 15일
+						<strong>성수기 안내</strong> : 여름 7월 19일 ~ 8월 17일
 					</p>
 					<p>
 						기준인원초과시 : <strong>1인당 1만원 추가</strong>
@@ -233,10 +233,10 @@
 						숯불 바베큐 : <strong>1만원 추가</strong>
 					</p>
 					<p>
-						전화번호 : 017-515-1571
+						전화번호 : 010-4190-1571
 					</p>
 					<p>
-                      계좌번호 : 농협&nbsp;&nbsp;211039-51-079732&nbsp;&nbsp;김영정
+                      계좌번호 : 단위농협&nbsp;&nbsp;351-0610-4319-03&nbsp;&nbsp;최연정
 					</p>
 					<p>
 						<a href="javascript:RealReservation()" class="btn btn-primary btn-large btn-question pull-left">실시간 예약하기</a>
@@ -248,7 +248,7 @@
 					<div class="span12 feature">
 						<div class="text">
 							<h6>기본 사항</h6>
-							<p>입실 시간은 이용 당일 14시부터 가능합ㄴ디ㅏ. 가능하면 당일 22시 이전까지 입실해 주십시요. 만약
+							<p>입실 시간은 이용 당일 14시부터 가능합니다. 가능하면 당일 22시 이전까지 입실해 주십시요. 만약
 								22시가 넘을 경우 사전에 전화 주시기 바랍니다.</p>
 							<p>퇴실 시간은 이용 마지막 날의 12시까지입니다. 다음 손님들을 위해 퇴실 시간을 준수해 주십시요.</p>
 						</div>

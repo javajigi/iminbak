@@ -9,7 +9,7 @@
 	
 	<decorator name="boards" page="boards.jsp">
 		<pattern>/boards*</pattern>
-		<pattern>/blogs/form</pattern>
+		<pattern>/blogs*</pattern>
 	</decorator>
 
 	<decorator name="default" page="default.jsp">

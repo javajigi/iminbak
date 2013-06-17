@@ -16,8 +16,6 @@
     <![endif]-->
 </head>
 <body>
-	<iminbak:navbar main="false"/>
-
     <div id="blog_post">
         <div class="container">
         	<c:forEach items="${blogs.content}" var="each">
