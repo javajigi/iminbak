@@ -3,14 +3,19 @@
     <footer id="footer">
         <div class="container">
             <div class="row info">
-                <div class="span6 residence">
+                <div class="span5 residence">
                     <ul>
                         <li>강원도 양양군 현북면 원일전리 3반 정이담긴집</li>
                     </ul>
                 </div>
-                <div class="span5 touch">
+                <div class="span2">
                     <ul>
-                        <li><strong>전화번호</strong> 010-4190-1571</li>
+                        <li><strong>대표자 : </strong> 박재성</li>
+                    </ul>
+                </div>
+                <div class="span4 touch">
+                    <ul>
+                        <li><strong>전화번호 : </strong> 017-515-1571</li>
                     </ul>
                 </div>
             </div>

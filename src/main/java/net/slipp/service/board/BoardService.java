@@ -108,7 +108,7 @@ public class BoardService {
 		}
 		
 		answerRepository.delete(answer);
-		Board question = boardRepository.findOne(boardId);
-		question.deAnswered();
+		Board board = boardRepository.findOne(boardId);
+		board.deAnswered();
 	}
 }
