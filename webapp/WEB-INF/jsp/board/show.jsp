@@ -31,10 +31,10 @@
 							<form:textarea path="contents" cols="80" rows="5"/>
 						</div>
 						<div class="control-group">
-							<form:input path="name" size="40" placeholder="이름" />
+							이름 : <form:input path="name" size="40" placeholder="이름" />
 						</div>
 						<div class="control-group">
-							<form:password path="rawPassword" size="40" placeholder="비밀번호" />
+							비밀번호 : <form:password path="rawPassword" size="40" placeholder="비밀번호" />
 							<c:if test="${not empty errorMessage}">
 							<label for="password" generated="true" class="error" style="">${errorMessage}</label>
 							</c:if>
