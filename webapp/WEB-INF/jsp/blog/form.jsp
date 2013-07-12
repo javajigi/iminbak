@@ -9,7 +9,6 @@
 <body>
 
 <div class="section-qna">
-	<slipp:header type="1"/>
 	<div class="row-fluid">
 		<div class="span1"></div>
 		<div class="span10 qna-form">

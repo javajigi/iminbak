@@ -342,7 +342,6 @@ a:hover {
 }
 .row-fluid:before,
 .row-fluid:after {
-  display: table;
   content: "";
   line-height: 0;
 }
