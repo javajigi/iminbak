@@ -26,6 +26,10 @@ public class AnswerController {
 	@RequestMapping(value = "", method = RequestMethod.POST)
 	public String create(@PathVariable BoardType boardType, @PathVariable Long boardId, Answer answer)
 			throws Exception {
+        if (boardType == BoardType.review) {
+            throw new IllegalArgumentException();
+        }
+        
 		logger.debug("questionId :{}, answer : {}", boardId, answer);
 		boardService.createAnswer(boardId, answer);
 		return String.format("redirect:/boards/%s/%d", boardType.name(), boardId);
