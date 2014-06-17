@@ -36,7 +36,7 @@
                     <h3 class="footer_header">
                         연락처 및 계좌정보
                     </h3>
-                    전화번호 : 010-4190-1571<br/>
+                    전화번호 : 010-6236-8627<br/>
                     계좌번호 : 단위농협&nbsp;&nbsp;351-0610-4319-03&nbsp;&nbsp;최연정
                 </div>
                 <div class="span6 recent_posts">

@@ -19,6 +19,7 @@
 			</c:if>
 			<form:form modelAttribute="board" cssClass="form-horizontal" action="/boards/${boardType}" method="${method}">
 				<form:hidden path="boardId"/>
+				<form:hidden path="token"/>
 				<fieldset>
 					<div class="control-group">
 						제목 : <form:input path="title" cssClass="input-block-level" placeholder="제목" />

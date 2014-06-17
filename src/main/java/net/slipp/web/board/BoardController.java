@@ -4,6 +4,7 @@ import java.util.Collection;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import net.slipp.domain.board.Answer;
 import net.slipp.domain.board.Board;
@@ -55,44 +56,41 @@ public class BoardController {
     }
 
     @RequestMapping("/form")
-    public String createForm(@PathVariable BoardType boardType, Model model) {
-        if (boardType == BoardType.review) {
-            throw new IllegalArgumentException();
-        }
-
+    public String createForm(@PathVariable BoardType boardType, HttpSession session, Model model) {
+        BoardDto boardDto = new BoardDto();
+        session.setAttribute("token", boardDto.getToken());
         model.addAttribute("boardType", boardType);
-        model.addAttribute("board", new BoardDto());
+        model.addAttribute("board", boardDto);
         return "board/form";
     }
 
     @RequestMapping(value = "", method = RequestMethod.POST)
     public String create(@PathVariable BoardType boardType, BoardDto newBoard, HttpServletRequest request) {
-        if (boardType == BoardType.review) {
-            throw new IllegalArgumentException();
+        HttpSession session = request.getSession();
+        Object tokenObject = session.getAttribute("token");
+        if (tokenObject == null) {
+            throw new IllegalStateException("비정상적인 글쓰기입니다.");
         }
-
+        if (!newBoard.validToken((String)tokenObject)) {
+            throw new IllegalStateException("비정상적인 글쓰기입니다.");
+        }
+        
         log.debug("Question : {}", newBoard);
         Board board = boardService.createBoard(newBoard, request.getRemoteAddr());
         return String.format("redirect:/boards/%s/%s", boardType.name(), board.getBoardId());
     }
 
     @RequestMapping("/{id}/form")
-    public String updateForm(@PathVariable BoardType boardType, @PathVariable Long id, Model model) {
-        if (boardType == BoardType.review) {
-            throw new IllegalArgumentException();
-        }
-
+    public String updateForm(@PathVariable BoardType boardType, @PathVariable Long id, HttpSession session, Model model) {
         Board board = boardService.findByBoardId(id);
+        BoardDto boardDto = new BoardDto(board);
+        session.setAttribute("token", boardDto.getToken());
         model.addAttribute("board", new BoardDto(board));
         return "board/form";
     }
 
     @RequestMapping(value = "", method = RequestMethod.PUT)
     public String update(@PathVariable BoardType boardType, BoardDto updatedBoard, Model model) {
-        if (boardType == BoardType.review) {
-            throw new IllegalArgumentException();
-        }
-        
         log.debug("Question : {}", updatedBoard);
 
         try {

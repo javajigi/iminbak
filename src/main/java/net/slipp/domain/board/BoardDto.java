@@ -1,9 +1,13 @@
 package net.slipp.domain.board;
 
+import net.slipp.support.utils.SecurityUtils;
+
 import org.springframework.security.authentication.encoding.PasswordEncoder;
 
 public class BoardDto {
-	private Long boardId;
+	private static final int DEFAULT_WRITE_INTERVAL_SECOND = 20;
+
+    private Long boardId;
 	
 	private BoardType boardType;
 
@@ -14,8 +18,11 @@ public class BoardDto {
 	private String title;
 
 	private String contents;
+	
+	private String token;
 
 	public BoardDto() {
+	    this.token = SecurityUtils.createToken();
 	}
 
 	public BoardDto(Board board) {
@@ -24,6 +31,7 @@ public class BoardDto {
 		this.name = board.getName();
 		this.title = board.getTitle();
 		this.contents = board.getContents();
+		this.token = SecurityUtils.createToken();
 	}
 
 	public Long getBoardId() {
@@ -72,6 +80,27 @@ public class BoardDto {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	
+	public void setToken(String token) {
+        this.token = token;
+    }
+	
+	public String getToken() {
+        return token;
+    }
+	
+	public boolean validToken(String sessionToken) {
+	    if (! SecurityUtils.validUuid(sessionToken, this.token)) {
+	        return false; 
+	    }
+	    
+	    long intervalSecond = SecurityUtils.intervalSecond(this.token);
+	    if (intervalSecond < DEFAULT_WRITE_INTERVAL_SECOND) {
+	        return false;
+	    }
+	    
+	    return true;
 	}
 	
 	public Board createBoard(PasswordEncoder passwordEncoder, String ipaddress) {
