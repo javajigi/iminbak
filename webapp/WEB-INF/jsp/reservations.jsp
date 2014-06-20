@@ -236,7 +236,7 @@
 						전화번호 : 010-6236-8627
 					</p>
 					<p>
-                      계좌번호 : 단위농협&nbsp;&nbsp;351-0610-4319-03&nbsp;&nbsp;최연정
+                      계좌번호 : 단위농협&nbsp;&nbsp;211039-51-079732&nbsp;&nbsp;김영정
 					</p>
 					<p>
 						<a href="javascript:RealReservation()" class="btn btn-primary btn-large btn-question pull-left">실시간 예약하기</a>
