@@ -227,7 +227,7 @@
 						<strong>성수기 안내</strong> : 여름 7월 18일 ~ 8월 17일
 					</p>
 					<p>
-						기준인원초과시 : <strong>1인당 1만원 추가<br/>(초등학생부터)</strong>
+						기준인원초과시 : <strong>1인당 1만원 추가</strong>
 					</p>
 					<p>
 						숯불 바베큐 : <strong>1만원 추가</strong>
