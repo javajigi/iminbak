@@ -227,7 +227,7 @@
 						<strong>성수기 안내</strong> : 여름 7월 18일 ~ 8월 17일
 					</p>
 					<p>
-						기준인원초과시 : <strong>1인당 1만원 추가<br/>(초등학생부터)</strong>
+						기준인원초과시 : <strong>1인당 1만원 추가</strong>
 					</p>
 					<p>
 						숯불 바베큐 : <strong>1만원 추가</strong>
@@ -236,7 +236,7 @@
 						전화번호 : 010-6236-8627
 					</p>
 					<p>
-                      계좌번호 : 단위농협&nbsp;&nbsp;351-0610-4319-03&nbsp;&nbsp;최연정
+                      계좌번호 : 단위농협&nbsp;&nbsp;211039-51-079732&nbsp;&nbsp;김영정
 					</p>
 					<p>
 						<a href="javascript:RealReservation()" class="btn btn-primary btn-large btn-question pull-left">실시간 예약하기</a>
