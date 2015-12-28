@@ -1,4 +1,7 @@
+.idea/
+tomcat.8080/
 target/
 /.settings
 /.classpath
 /.project
+/iminbak.iml

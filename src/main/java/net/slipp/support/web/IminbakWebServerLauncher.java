@@ -1,29 +1,24 @@
 package net.slipp.support.web;
 
+import java.io.File;
+import org.apache.catalina.connector.Connector;
+import org.apache.catalina.startup.Tomcat;
+
 public class IminbakWebServerLauncher {
-	public static WebServer createDefaultWebServer(int port) {
-		final String webapp = "webapp";
-		final String webappConfiguration = "src/main/resources/jetty-web.xml";
-		final String targetClasses = "target/classes";
-		final String webXml = webapp + "/WEB-INF/web.xml";
-		final String springXml = webapp + "/WEB-INF/spring-servlet.xml";
-		final String sitemeshXml = webapp + "/WEB-INF/decorators.xml";
+    public static void main(String[] args) throws Exception {
+        String webappDirLocation = "webapp/";
+        Tomcat tomcat = new Tomcat();
+        String webPort = System.getenv("PORT");
+        if(webPort == null || webPort.isEmpty()) {
+            webPort = "8080";
+        }
 
-		WebServer server = new WebServer(port, webapp, webappConfiguration, targetClasses, webXml, springXml,
-				sitemeshXml);
-		return server;
-	}
-
-	public static void main(String[] args) throws Exception {
-		int port = getPort(args);
-		createDefaultWebServer(port).start();
-	}
-
-	private static int getPort(String[] args) {
-		int port = 8080;
-		if (args.length == 1) {
-			port = Integer.parseInt(args[0]);
-		}
-		return port;
-	}
+        tomcat.setPort(Integer.valueOf(webPort));
+        Connector connector = tomcat.getConnector();
+        connector.setURIEncoding("UTF-8");
+        tomcat.addWebapp("/", new File(webappDirLocation).getAbsolutePath());
+        System.out.println("configuring app with basedir: " + new File("./" + webappDirLocation).getAbsolutePath());
+        tomcat.start();
+        tomcat.getServer().await();
+    }
 }
