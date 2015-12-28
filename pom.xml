@@ -410,12 +410,6 @@
 			<url>https://github.com/GabiAxel/maven/raw/master/</url>
 		</repository>
 	</repositories>
-	<pluginRepositories>
-		<pluginRepository>
-			<id>c5-public-repository</id>
-			<url>http://mvn.carbonfive.com/public</url>
-		</pluginRepository>
-	</pluginRepositories>
 	<reports>
 		<report>maven-emma-plugin</report>
 		<report>maven-pmd-plugin</report>
