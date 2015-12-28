@@ -78,7 +78,7 @@ def copy():
 def symboliclink():
     if not env.has_key('current_release'):
         releases()
-    local("ln -nfs %(current_release)s %(catalina_base)s/webapps/ROOT" % { 'current_release':env.current_release, 'catalina_base':env.catalina_base })
+    local("ln -nfs %(current_release)s %(catalina_base)s/ROOT" % { 'current_release':env.current_release, 'catalina_base':env.catalina_base })
 
 def showlogs():
     local("tail -500f %(catalina_base)s/logs/catalina.out" % { 'catalina_base':env.catalina_base })
