@@ -16,6 +16,7 @@
         <tomcat.version>8.0.28</tomcat.version>
 		<jpametamodel.generated.dir>${basedir}/target/generated-sources/jpametamodel</jpametamodel.generated.dir>
 		<acceptance.test.dir>${basedir}/src/acceptance-test/java</acceptance.test.dir>
+        <maven.test.skip>true</maven.test.skip>
 	</properties>
 	<dependencies>
 		<dependency>
