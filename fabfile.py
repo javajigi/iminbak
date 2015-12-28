@@ -6,7 +6,7 @@ from fabric.context_managers import shell_env,cd
 env.base_dir = "/usr/apps"
 
 projects = {
-    "iminbak": {
+    "iminbak-web": {
         "catalina_home": "%(base_dir)s/tomcat" % {"base_dir": env.base_dir},
         "catalina_base": "%(base_dir)s/projects/iminbak" % {"base_dir": env.base_dir},
         "releases_path": "%(base_dir)s/projects/iminbak/releases" % {"base_dir": env.base_dir},
