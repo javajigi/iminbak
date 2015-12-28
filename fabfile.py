@@ -42,7 +42,6 @@ def build():
 def start():
     with shell_env(
             CATALINA_HOME=env.catalina_home,
-            CATALINA_BASE=env.catalina_base,
             JAVA_OPTS=env.java_opts
         ):
         local('set -m; %(catalina_home)s/bin/startup.sh' % {'catalina_home':env.catalina_home})  # tomcat instance start
@@ -78,7 +77,7 @@ def copy():
 def symboliclink():
     if not env.has_key('current_release'):
         releases()
-    local("ln -nfs %(current_release)s %(catalina_base)s/ROOT" % { 'current_release':env.current_release, 'catalina_base':env.catalina_base })
+    local("ln -nfs %(current_release)s %(catalina_home)s/webapps/ROOT" % { 'current_release':env.current_release, 'catalina_home':env.catalina_home })
 
 def showlogs():
     local("tail -500f %(catalina_base)s/logs/catalina.out" % { 'catalina_base':env.catalina_base })
