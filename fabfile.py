@@ -87,7 +87,5 @@ def deploy():
     execute(init)
     execute(build)
     execute(copy)
-    execute(stop)
     execute(symboliclink)
     execute(start)
-    execute(showlogs)
