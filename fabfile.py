@@ -18,7 +18,7 @@ projects = {
 def hostname():
     local('uname -a')
 
-def init(name='iminbak'):
+def init(name='iminbak-web'):
     env.update(projects[name])
     env.project_name = name
 
