@@ -35,7 +35,7 @@
 	<script language="javascript"> 
 	<!-- 
 	function RealReservation() { 
-	  var url="http://real.pentour.com/index.php?pid=3108"; 
+	  var url="http://real.pentour.com/index.php?pid=3171"; 
 	  open(url,'펜션예약하기','width=620,height=600,menubar=no,resizable=no,location=no,status=no,scrollbars=yes,toolbar=no'); 
 	} 
 	// --> 
