@@ -224,7 +224,7 @@
 				<div class="span4 right_box">
 					<h2>예약 안내</h2>
 					<p>
-						<strong>성수기 안내</strong> : 여름 7월 22일 ~ 8월 15일
+						<strong>성수기 안내</strong> : 여름 7월 21일 ~ 8월 15일
 					</p>
 					<p>
 						기준인원초과시 : <strong>1인당 1만원 추가</strong>
