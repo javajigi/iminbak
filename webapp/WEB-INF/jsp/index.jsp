@@ -36,7 +36,7 @@
                     <h3 class="footer_header">
                         연락처 및 계좌정보
                     </h3>
-                    전화번호 : 010-6236-8627<br/>
+                    전화번호 : 010-6237-1571<br/>
                     계좌번호 : 단위농협&nbsp;&nbsp;211039-51-079732&nbsp;&nbsp;김영정
                 </div>
                 <div class="span6 recent_posts">
